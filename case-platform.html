@@ -1,137 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Enterprise Platform Product Case Study | Rihannat Amoo</title>
-<link rel="stylesheet" href="styles.css"/>
-<link rel="stylesheet" href="case.css"/>
-</head>
-<body>
-<header class="case-header"><a class="brand" href="index.html">rihannat<span>.product</span></a><a class="back" href="index.html#work">← Case studies</a></header>
-<main>
-<article class="case-page">
-  <div class="case-meta">CASE STUDY 02 · ENTERPRISE PLATFORM · MULTI TENANT SAAS</div>
-  <h1>Protecting platform integrity while customer needs and releases keep moving.</h1>
-  <p class="case-intro">Enterprise platform product work is rarely a single feature. It is a continuous set of decisions about what belongs in shared capability, what should be configuration, what should stay customer specific, what must wait, and what is safe to release.</p>
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Enterprise CX Platform | Rihannat Amoo</title><link rel="stylesheet" href="styles.css"/><link rel="stylesheet" href="case.css"/></head>
+<body><header class="case-header"><a class="brand" href="index.html">rihannat<span>.product</span></a><a class="back" href="index.html#work">← Case studies</a></header><main><article class="case-page visual-case">
+<div class="case-meta">CASE STUDY 02 · ENTERPRISE PLATFORM · MULTI TENANT SAAS</div>
+<h1>Built and evolved shared capabilities for a configurable enterprise CX platform.</h1>
+<p class="case-intro">Product leadership across a multi tenant customer experience platform serving more than 26 enterprise clients. The work focused on turning recurring customer needs into reusable platform capabilities rather than accumulating one off solutions.</p>
+<div class="summary"><div><small>My role</small><strong>Platform Product Owner</strong></div><div><small>Product</small><strong>Enterprise CX SaaS</strong></div><div><small>Scale</small><strong>26+ enterprise clients</strong></div><div><small>Core challenge</small><strong>Configuration without fragmentation</strong></div></div>
 
-  <div class="summary">
-    <div><small>My remit</small><strong>Platform product ownership</strong></div>
-    <div><small>Product</small><strong>Enterprise customer experience SaaS</strong></div>
-    <div><small>Scale</small><strong>26+ customers across the platform footprint</strong></div>
-    <div><small>Delivery</small><strong>Engineering, QA, BA and client teams</strong></div>
-  </div>
+<section class="product-showcase first-showcase"><div class="eyebrow">THE PLATFORM</div><h2>A shared product layer designed to support different enterprise programs without rebuilding the product for every client.</h2><div class="product-frame"><div class="app-topbar"><div class="app-brand">Enterprise CX Platform</div><div class="app-context">Shared product · Client configuration · Reporting</div><div class="app-avatar">RA</div></div><div class="app-body"><aside class="app-side"><span class="app-side-label">PLATFORM</span><a class="app-nav active">Reporting</a><a class="app-nav">Programs</a><a class="app-nav">Hierarchy & Metrics</a><a class="app-nav">Users & Access</a><span class="app-side-label admin-label">CONFIGURE</span><a class="app-nav">Branding</a><a class="app-nav">Filters</a></aside><div class="app-canvas"><div class="filter-row"><span>Tenant · Enterprise Client</span><span>Program · Customer Experience</span><span>Period · Current</span></div><div class="module-grid"><div class="module-card primary"><small>01</small><h3>Configurable Reporting</h3><p>Reusable report definitions, click through behavior, filters and visualization options.</p></div><div class="module-card"><small>02</small><h3>Program Management</h3><p>Shared program structures and administration rather than client specific implementations.</p></div><div class="module-card"><small>03</small><h3>Hierarchy + Metrics</h3><p>Dynamic hierarchy behavior, metric catalogues and reusable measurement structures.</p></div><div class="module-card"><small>04</small><h3>Identity + Configuration</h3><p>SSO, white labeling, user administration and tenant level configuration.</p></div></div></div></div></div><div class="portfolio-caption">Recreated product view. No customer data or proprietary internal screen is shown.</div></section>
 
-  <nav class="case-toc" aria-label="Case study sections">
-    <a href="#context">Context</a><a href="#framework">Decision framework</a><a href="#decisions">Scope decisions</a><a href="#requirements">Requirements</a><a href="#release">Release judgment</a><a href="#planning">Planning model</a><a href="#measurement">Evidence</a>
-  </nav>
+<section><div class="eyebrow">CONFIGURABLE REPORTING</div><h2>Make reporting reusable enough for the platform and flexible enough for enterprise programs.</h2><p class="section-lead">A major product theme was moving reporting behavior into reusable configuration: report types, metrics, filters, click through behavior and visualization options that could serve different customers without branching the core product.</p><div class="product-frame compact-frame"><div class="screen-title-row"><div><small>REPORT BUILDER</small><h3>Customer Experience Overview</h3></div><div class="sort-label">Reusable definition</div></div><div class="module-grid"><div class="module-card"><small>REPORT TYPE</small><h3>Detailed view</h3><p>Choose the reporting experience rather than hard coding a client specific page.</p></div><div class="module-card"><small>METRICS</small><h3>NPS · CSAT · Volume</h3><p>Metric catalogue behavior supports repeatable definitions across reports.</p></div><div class="module-card"><small>INTERACTION</small><h3>Click through</h3><p>Users can move from aggregate reporting into the detailed evidence behind a result.</p></div><div class="module-card"><small>OPTIONS</small><h3>Filters + evaluation bands</h3><p>Related configuration is consolidated so report setup is understandable and maintainable.</p></div></div></div></section>
 
-  <section id="context">
-    <div class="eyebrow">01 · CONTEXT</div>
-    <h2>A shared platform has to absorb difference without becoming a collection of exceptions.</h2>
-    <p class="section-lead">The organization was moving toward a single configurable platform while supporting a broad enterprise customer base, migration work, active releases, customer commitments and legacy behavior.</p>
-    <div class="context-grid">
-      <div class="context-card"><small>ROADMAP INPUT</small><h3>Customer commitments</h3><p>Enterprise customers bring legitimate requirements, but the immediate request is not automatically the right product abstraction.</p></div>
-      <div class="context-card"><small>PLATFORM INPUT</small><h3>Shared capability</h3><p>Configuration, reporting, hierarchy, permissions and administration need reusable rules that work across tenants.</p></div>
-      <div class="context-card"><small>DELIVERY INPUT</small><h3>Defects and technical debt</h3><p>Release quality, carryover, dependencies and technical work compete with visible roadmap features.</p></div>
-      <div class="context-card"><small>MIGRATION INPUT</small><h3>Legacy parity and simplification</h3><p>Moving customers to a new platform creates pressure to preserve important behavior without recreating every historical implementation choice.</p></div>
-    </div>
-    <div class="callout"><b>The recurring product question:</b><p>Is this a customer request we should implement literally, a configuration option, a shared product rule, an existing capability we should reuse, or work we should not take on now?</p></div>
-  </section>
+<section><div class="eyebrow">PROGRAM + HIERARCHY MANAGEMENT</div><div class="case-split"><div><h2>Model enterprise structures without turning each implementation into custom software.</h2><p>Programs, hierarchy and metrics are foundational because reporting, permissions and analysis depend on them. I worked on the product rules that allow these structures to be configured consistently while remaining usable for different organizational models.</p></div><div class="mini-principle"><small>PLATFORM PRINCIPLE</small><strong>Configure first</strong><span>Customize only when the shared product cannot solve the need.</span></div></div><div class="product-frame compact-frame"><div class="screen-head"><div><small>PROGRAM MANAGEMENT</small><h3>Customer Experience Program</h3></div><div class="screen-stat"><b>4</b><span>hierarchy levels</span></div></div><div class="data-table"><div class="data-row data-head"><span>Level</span><span>Configuration</span><span>Status</span><span>Action</span></div><div class="data-row"><span><b>Region</b><small>Top level</small></span><span>Required</span><span><b>Active</b></span><span>Edit</span></div><div class="data-row"><span><b>Market</b><small>Level 2</small></span><span>Dynamic</span><span><b>Active</b></span><span>Edit</span></div><div class="data-row"><span><b>Location</b><small>Level 3</small></span><span>Filterable</span><span><b>Active</b></span><span>Edit</span></div></div></div></section>
 
-  <section id="framework">
-    <div class="eyebrow">02 · PLATFORM DECISION FRAMEWORK</div>
-    <h2>I use scalability as a sequence of product questions, not as a slogan.</h2>
-    <div class="timeline">
-      <div class="timeline-item"><code>01</code><div><h3>What problem is the customer actually trying to solve?</h3><p>Separate the job from the requested implementation so the solution is not constrained by the first proposed UI or configuration.</p></div></div>
-      <div class="timeline-item"><code>02</code><div><h3>Does the platform already have a capability that solves it?</h3><p>Check existing report builders, configuration surfaces, hierarchy behavior and shared services before creating duplicate scope.</p></div></div>
-      <div class="timeline-item"><code>03</code><div><h3>Should the behavior be standard or configurable?</h3><p>A standard rule creates consistency. Configuration creates flexibility. Both have maintenance costs, so the choice must be intentional.</p></div></div>
-      <div class="timeline-item"><code>04</code><div><h3>What are the cross platform consequences?</h3><p>Consider data, permissions, white labeling, migration, reporting, administration and downstream workflows before approving the change.</p></div></div>
-      <div class="timeline-item"><code>05</code><div><h3>What is the smallest coherent slice?</h3><p>Sequence the outcome so a sprint delivers a usable capability rather than a disconnected technical fragment.</p></div></div>
-      <div class="timeline-item"><code>06</code><div><h3>Is it safe to release?</h3><p>QA signoff, unresolved defects, environment readiness, customer UAT and dependencies are product inputs, not just delivery mechanics.</p></div></div>
-    </div>
-  </section>
+<section><div class="eyebrow">PRODUCT DECISION FRAMEWORK</div><h2>The real platform work is deciding what belongs in the shared product.</h2><div class="governance-flow"><span>Customer need</span><i>→</i><span>Existing capability?</span><i>→</i><span>Can configuration solve it?</span><i>→</i><span class="active">Shared capability</span><i>→</i><span>Release</span></div><div class="decision-grid" style="margin-top:24px"><div class="decision"><code>01</code><h3>Reuse before invention</h3><p>Check whether the platform already supports the need before creating another story or configuration path.</p></div><div class="decision"><code>02</code><h3>Configuration before bespoke code</h3><p>If several clients need different values but the same behavior, solve it in configuration instead of branching the product.</p></div><div class="decision"><code>03</code><h3>Shared behavior before client exception</h3><p>When the need reveals a genuine product gap, define the reusable rule rather than hard coding the immediate request.</p></div><div class="decision"><code>04</code><h3>Quality is part of scope</h3><p>A feature is not complete because code exists. QA readiness, UAT confidence and release risk are product decisions too.</p></div></div></section>
 
-  <section id="decisions">
-    <div class="eyebrow">03 · REAL SCOPE DECISIONS</div>
-    <h2>Good platform ownership often means deciding not to build the obvious ticket.</h2>
-    <p>These examples are sanitized, but they reflect actual product calls made while shaping releases and backlog scope.</p>
-    <div class="decision-table">
-      <div class="decision-row header"><div>Situation</div><div>Product reasoning</div><div>Decision</div></div>
-      <div class="decision-row"><div><b>Admin clickthrough request</b></div><div><span>The requested behavior already existed through the report definition capability. Building a second admin path would duplicate functionality and increase maintenance.</span></div><div><span>Do not create a new story. Reuse the existing capability and clarify configuration.</span></div></div>
-      <div class="decision-row"><div><b>Additional popup behavior</b></div><div><span>The behavior was possible but lower value than work required for the core reporting flow.</span></div><div><span>Deprioritize rather than let a nice to have interaction displace higher value scope.</span></div></div>
-      <div class="decision-row"><div><b>Two related report option groups</b></div><div><span>The request appeared to be a UI and configuration consolidation, but changing the underlying behavior would create a materially different story.</span></div><div><span>Clarify whether the change is presentation only before committing scope.</span></div></div>
-      <div class="decision-row"><div><b>Carryover from the prior sprint</b></div><div><span>Partially completed work should remain visible without making the next sprint appear to contain a brand new requirement.</span></div><div><span>Carry the work forward explicitly as continuation while planning the next release separately.</span></div></div>
-    </div>
-    <div class="artifact"><div class="artifact-title">Recreated platform decision path</div><div class="flow"><span>Customer need</span><i>→</i><span>Problem definition</span><i>→</i><span>Existing capability?</span><i>→</i><span>Standard vs configuration</span><i>→</i><span>Dependencies</span><i>→</i><span>Build, reuse, defer or reject</span></div><div class="artifact-note">The value is not the diagram. The value is preventing one off requests from quietly becoming permanent product debt.</div></div>
-  </section>
+<section><div class="eyebrow">SELECTED PRODUCT CALLS</div><h2>Examples of product judgment applied to the platform.</h2><div class="rule-list"><div class="rule"><b>Click through</b><span>Use the existing report definition capability where it already supports the requirement instead of creating duplicate admin functionality.</span></div><div class="rule"><b>Report options</b><span>Combine related heatmap and evaluation band configuration into a clearer report setup experience instead of maintaining separate overlapping controls.</span></div><div class="rule"><b>Hierarchy metrics</b><span>Keep metric behavior compatible with dynamic hierarchy structures so reporting can adapt to different enterprise organizations.</span></div><div class="rule"><b>Release scope</b><span>When quality risk is too high, consolidate fixes into the stronger release path instead of moving instability downstream to UAT.</span></div></div></section>
 
-  <section id="requirements">
-    <div class="eyebrow">04 · REQUIREMENT QUALITY</div>
-    <h2>Platform stories need enough context to protect behavior across teams.</h2>
-    <p>I helped standardize how new product work is described so engineering and QA can understand the intended outcome, relevant design context, reusable behavior and completion criteria.</p>
-    <div class="surface-grid">
-      <div class="surface-card"><small>01</small><h3>Description</h3><p>What capability is changing and what user or product problem the story addresses.</p></div>
-      <div class="surface-card"><small>02</small><h3>Background and context</h3><p>Why the change exists, what triggered it, dependencies, prior behavior and known constraints.</p></div>
-      <div class="surface-card"><small>03</small><h3>Design and white label requirements</h3><p>Mockup references, product behavior and reusable branding expectations where relevant.</p></div>
-      <div class="surface-card"><small>04</small><h3>Acceptance criteria and definition of done</h3><p>Observable behavior, edge cases, testability and the conditions required before the work is considered complete.</p></div>
-    </div>
-    <div class="before-after">
-      <div class="state-card"><small>REQUEST LED</small><h3>“Add this option for this customer.”</h3><ul><li>Immediate implementation dominates</li><li>Shared behavior is unclear</li><li>Dependencies appear late</li><li>QA inherits ambiguity</li></ul></div>
-      <div class="state-card after"><small>PLATFORM LED</small><h3>“Define the reusable product behavior.”</h3><ul><li>User problem is explicit</li><li>Configuration boundary is clear</li><li>Dependencies are visible</li><li>Acceptance is testable</li></ul></div>
-    </div>
-  </section>
+<section><div class="eyebrow">WHAT I OWNED</div><h2>Product definition through release readiness.</h2><div class="measure-grid"><div class="measure"><b>Requirements</b><span>Business context, design intent, white label needs, acceptance criteria and definition of done.</span></div><div class="measure"><b>Prioritization</b><span>Customer commitments, product gaps, defects, migration, technical debt and release risk.</span></div><div class="measure"><b>Cross functional delivery</b><span>Engineering, QA, BA, design and client facing stakeholders working from one product definition.</span></div><div class="measure"><b>Release judgment</b><span>QA, UAT, environment sequencing, dependencies and decisions about what should enter a release.</span></div></div></section>
 
-  <section id="release">
-    <div class="eyebrow">05 · RELEASE JUDGMENT</div>
-    <h2>Quality gates are part of product management because release risk changes the customer outcome.</h2>
-    <p class="section-lead">One release candidate accumulated enough defects that moving it directly into customer validation would have transferred instability downstream. The stronger decision was to consolidate the work into the next release path and require QA confidence before UAT.</p>
-    <div class="decision-grid">
-      <div class="decision"><code>RISK</code><h3>High defect volume</h3><p>A date alone is not a reason to move unstable scope forward. Defects create noise in UAT and reduce the quality of customer feedback.</p></div>
-      <div class="decision"><code>GATE</code><h3>QA signoff before UAT</h3><p>Known issues are tracked before planning, sprint defects are addressed within the sprint where possible, and critical production defects follow a hotfix path.</p></div>
-      <div class="decision"><code>DECISION</code><h3>Consolidate instead of forcing progression</h3><p>Combine the affected work with the next stronger release path rather than pretending the original candidate was ready.</p></div>
-      <div class="decision"><code>WHY</code><h3>Protect downstream validation</h3><p>UAT should validate the intended customer experience, not become an extension of basic defect discovery.</p></div>
-    </div>
-    <div class="artifact"><div class="artifact-title">Release readiness lens</div><div class="flow"><span>Scope complete</span><span>Critical defects resolved</span><span>Dependencies ready</span><span>QA signoff</span><span>Tenant configuration ready</span><span>UAT plan ready</span><span>Production decision</span></div><div class="artifact-note">Not every release needs every item in the same form, but the product owner should know what is true before scope moves forward.</div></div>
-  </section>
-
-  <section id="planning">
-    <div class="eyebrow">06 · SPRINT AND RELEASE PLANNING</div>
-    <h2>I separate what the team is building now from which release will ultimately carry it.</h2>
-    <p>Sprint planning and release planning answer different questions. A sprint is the team’s near term execution commitment. A release is a packaging and customer readiness decision that may combine work across multiple sprints.</p>
-    <div class="before-after">
-      <div class="state-card"><small>SPRINT VIEW</small><h3>What are we committing to work on?</h3><ul><li>Ready stories</li><li>Carryover made explicit</li><li>Dependencies understood</li><li>Engineering capacity and sequencing</li></ul></div>
-      <div class="state-card after"><small>RELEASE VIEW</small><h3>What is safe and valuable to ship together?</h3><ul><li>Completed capability</li><li>QA and UAT readiness</li><li>Tenant configuration</li><li>Customer commitments and timing</li></ul></div>
-    </div>
-    <div class="status-banner"><b>OPERATING PRINCIPLE</b><p>Plan sprint work first. Map completed and stable work into the right release after delivery reality is clearer. This prevents the release label from becoming a substitute for actual readiness.</p></div>
-  </section>
-
-  <section id="measurement">
-    <div class="eyebrow">07 · WHAT THE EVIDENCE IS</div>
-    <h2>This case is about product judgment at scale, not a manufactured single metric.</h2>
-    <p>The product is a live enterprise platform, so the evidence is the quality of decisions across a broad customer footprint, reusable requirement patterns, release discipline and the ability to keep multiple teams aligned around one product model.</p>
-    <div class="metric-grid">
-      <div class="metric"><b>26+</b><span>enterprise customers across the broader platform footprint</span></div>
-      <div class="metric"><b>4 stages</b><span>development, QA, customer validation and production in the delivery path</span></div>
-      <div class="metric"><b>1 platform</b><span>a shared product model that must absorb many customer contexts without fragmenting</span></div>
-    </div>
-    <div class="measure-grid">
-      <div class="measure"><b>Reusable versus one off scope</b><span>Track how often requests become shared capability or configuration rather than bespoke behavior.</span></div>
-      <div class="measure"><b>Release escape rate</b><span>Watch defects that reach later environments to identify where requirements or QA gates need improvement.</span></div>
-      <div class="measure"><b>Story readiness</b><span>Measure how often engineering begins work without unresolved product questions or missing dependencies.</span></div>
-      <div class="measure"><b>Migration friction</b><span>Track where legacy parity creates repeated exceptions that should instead become standardized platform behavior.</span></div>
-    </div>
-  </section>
-
-  <section>
-    <div class="eyebrow">WHAT THIS CASE PROVES</div>
-    <h2>I can own the messy middle of enterprise product management.</h2>
-    <p>I am comfortable where strategy, technical constraints, customer commitments, legacy behavior and release pressure collide. I can make those trade offs explicit, protect the shared product, and stay close enough to delivery to know when scope is actually ready.</p>
-  </section>
-
-  <section class="next"><div class="eyebrow">NEXT CASE STUDY</div><a href="case-statisense.html">Statisense AI strategy →</a></section>
-</article>
-</main>
-<script src="script.js"></script>
-</body>
-</html>
+<section class="next"><div class="eyebrow">NEXT CASE STUDY</div><a href="case-statisense.html">AI analytics product strategy →</a></section>
+</article></main><script src="script.js"></script></body></html>
