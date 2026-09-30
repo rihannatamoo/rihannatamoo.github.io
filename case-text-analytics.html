@@ -3,148 +3,154 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>AI Customer Intelligence Case Study | Rihannat Amoo</title>
+<title>AI Assisted Text Analytics Platform | Rihannat Amoo</title>
 <link rel="stylesheet" href="styles.css"/>
 <link rel="stylesheet" href="case.css"/>
 </head>
 <body>
 <header class="case-header"><a class="brand" href="index.html">rihannat<span>.product</span></a><a class="back" href="index.html#work">← Case studies</a></header>
 <main>
-<article class="case-page">
-  <div class="case-meta">CASE STUDY 01 · AI CUSTOMER INTELLIGENCE · ENTERPRISE SAAS</div>
-  <h1>Turning an ambiguous AI brief into a coherent customer intelligence product.</h1>
-  <p class="case-intro">The brief sounded simple: modernize text analytics with AI. The real work was defining what the product should become, separating overlapping concepts, creating a trustworthy path from signal to evidence, and translating the model into behavior engineering and QA could implement.</p>
+<article class="case-page visual-case">
+  <div class="case-meta">CASE STUDY 01 · AI ASSISTED TEXT ANALYTICS · ENTERPRISE SAAS</div>
+  <h1>Built an AI assisted text analytics platform for enterprise customer intelligence.</h1>
+  <p class="case-intro">Designed for enterprise teams working with high volumes of customer feedback across automotive, financial services and other customer experience environments. The product turns unstructured feedback into topics, emerging themes, keywords, sentiment, NPS context, AI generated insights and the verbatim evidence behind them.</p>
 
   <div class="summary">
-    <div><small>My remit</small><strong>Product discovery and definition</strong></div>
-    <div><small>Product</small><strong>Enterprise customer experience SaaS</strong></div>
-    <div><small>Scope</small><strong>Insights, topics, themes, keywords and comments</strong></div>
-    <div><small>Stage</small><strong>Definition and delivery readiness</strong></div>
+    <div><small>My role</small><strong>Product definition and delivery</strong></div>
+    <div><small>Primary users</small><strong>CX, insights and admin teams</strong></div>
+    <div><small>Feedback sources</small><strong>Surveys, reviews, calls, email, tickets and social</strong></div>
+    <div><small>Core product</small><strong>4 connected analytics experiences</strong></div>
   </div>
 
-  <nav class="case-toc" aria-label="Case study sections">
-    <a href="#context">Context</a><a href="#diagnosis">Diagnosis</a><a href="#architecture">Product model</a><a href="#decisions">Decisions</a><a href="#admin">Admin workflow</a><a href="#requirements">Requirements</a><a href="#delivery">Delivery</a><a href="#measurement">Measurement</a>
-  </nav>
+  <section class="product-showcase first-showcase">
+    <div class="eyebrow">THE PRODUCT</div>
+    <h2>One platform. Four ways to understand what customers are telling the business.</h2>
+    <p class="section-lead">The product was structured around four distinct jobs so an enterprise user can move from executive synthesis to detailed evidence without mixing different analytical concepts together.</p>
 
-  <section id="context">
-    <div class="eyebrow">01 · CONTEXT</div>
-    <h2>The existing product could classify feedback. The opportunity was to help users understand what was changing and why.</h2>
-    <p class="section-lead">The legacy capability already processed customer comments. That meant the challenge was not starting from zero. It was deciding how a mature classification experience should evolve when AI introduces discovery, synthesis and recommendation.</p>
-    <div class="context-grid">
-      <div class="context-card"><small>INPUTS</small><h3>Structured and unstructured feedback</h3><p>Survey comments and review data entered through file imports or APIs, with future expansion planned for additional feedback sources.</p></div>
-      <div class="context-card"><small>PROCESSING</small><h3>Sentiment and taxonomy matching</h3><p>The current system used sentiment analysis, configured topic patterns, keywords and comment level evidence.</p></div>
-      <div class="context-card"><small>CURRENT VALUE</small><h3>Understand known categories</h3><p>Teams could see how customers were talking about topics the business had already defined and chosen to monitor.</p></div>
-      <div class="context-card"><small>PRODUCT GAP</small><h3>Discover the unexpected</h3><p>The existing model was weaker at surfacing new patterns that had not already been encoded into the taxonomy.</p></div>
+    <div class="product-frame">
+      <div class="app-topbar"><div class="app-brand">Text Analytics</div><div class="app-context">Enterprise CX · Customer Intelligence</div><div class="app-avatar">RA</div></div>
+      <div class="app-body">
+        <aside class="app-side">
+          <span class="app-side-label">ANALYZE</span>
+          <a class="app-nav active">AI Insights</a>
+          <a class="app-nav">Topic Analysis</a>
+          <a class="app-nav">Keyword Explorer</a>
+          <span class="app-side-label admin-label">ADMIN</span>
+          <a class="app-nav">Theme Discovery</a>
+        </aside>
+        <div class="app-canvas">
+          <div class="filter-row"><span>Period · Last 90 days</span><span>Hierarchy · All</span><span>Source · All feedback</span></div>
+          <div class="module-grid">
+            <div class="module-card primary"><small>01</small><h3>AI Insights</h3><p>Three prioritized insights with focus areas, suggested actions and the comments used by AI.</p></div>
+            <div class="module-card"><small>02</small><h3>Topic Analysis</h3><p>Known topics and subtopics with sentiment, NPS, period change and comment drill down.</p></div>
+            <div class="module-card"><small>03</small><h3>Keyword Explorer</h3><p>High volume language patterns with sentiment, NPS, period change and evidence.</p></div>
+            <div class="module-card"><small>04</small><h3>Theme Discovery</h3><p>AI surfaced topic and subtopic candidates with human review and governance.</p></div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="callout"><b>The product question I reframed:</b><p>How do we combine known taxonomy analysis, emerging pattern discovery, AI generated synthesis and customer comments without creating four different names for the same thing?</p></div>
-  </section>
-
-  <section id="diagnosis">
-    <div class="eyebrow">02 · PRODUCT DIAGNOSIS</div>
-    <h2>The main risk was conceptual overlap, not lack of features.</h2>
-    <p>Early concepts included topics, subtopics, themes, discovery candidates, keywords, sentiment, AI insights and customer comments. Each item sounded reasonable in isolation. Together, they created ambiguity about where a user should go for an answer and what each surface actually owned.</p>
-    <p>I used three product tests to clarify the model: what question is the user trying to answer, whether the signal is known or emerging, and what evidence the user needs before acting on it.</p>
-    <div class="decision-grid">
-      <div class="decision"><code>TEST 01</code><h3>What question does this page answer?</h3><p>A page needed a distinct job. If two surfaces answered the same question, the model was not yet clear enough.</p></div>
-      <div class="decision"><code>TEST 02</code><h3>Is the signal known or emerging?</h3><p>Known taxonomy and new pattern discovery require different workflows, governance and user expectations.</p></div>
-      <div class="decision"><code>TEST 03</code><h3>How can the user verify it?</h3><p>Every aggregate insight needed a credible path back to the customer comments that support it.</p></div>
-      <div class="decision"><code>TEST 04</code><h3>What happens next?</h3><p>Discovery is useful only when users can interpret, approve, merge, reject, suppress or otherwise act on the signal.</p></div>
-    </div>
-  </section>
-
-  <section id="architecture">
-    <div class="eyebrow">03 · FUTURE STATE PRODUCT MODEL</div>
-    <h2>I separated four product jobs instead of forcing everything into one analytics page.</h2>
-    <div class="surface-grid">
-      <div class="surface-card"><small>SURFACE 01</small><h3>AI Insights</h3><p>Executive synthesis of what matters now.</p><ul><li>Exactly three key insights</li><li>One positive, one neutral and one negative</li><li>Where to focus, suggested actions and expected impact</li><li>All supporting comments available with sentiment filtering</li></ul></div>
-      <div class="surface-card"><small>SURFACE 02</small><h3>Topic Analysis</h3><p>Performance of the taxonomy the business already tracks.</p><ul><li>Topic and subtopic analysis</li><li>Sentiment distribution and NPS</li><li>Change versus previous period</li><li>Frequency as the default sort</li><li>Drill down to comments</li></ul></div>
-      <div class="surface-card"><small>SURFACE 03</small><h3>Keyword Explorer</h3><p>A separate way to inspect language patterns without confusing keywords with taxonomy.</p><ul><li>All keywords as the default view</li><li>Highest volume as the default sort</li><li>Sentiment, NPS and period change</li><li>Direct drill down to supporting comments</li></ul></div>
-      <div class="surface-card"><small>SURFACE 04</small><h3>Theme Discovery</h3><p>Governed discovery for patterns that may deserve a place in the taxonomy.</p><ul><li>Topic and subtopic candidates only</li><li>Suggested parent and closest existing topic</li><li>Volume, penetration and period change</li><li>Approve, merge, reject and suppress actions</li></ul></div>
-    </div>
-    <div class="artifact">
-      <div class="artifact-title">Recreated capability model</div>
-      <div class="flow"><span>Feedback sources</span><i>→</i><span>Enrichment</span><i>→</i><span>Known topic analysis</span><i>+</i><span>Emerging theme discovery</span><i>+</i><span>AI synthesis</span><i>→</i><span>Customer evidence</span><i>→</i><span>Decision or action</span></div>
-      <div class="artifact-note">Public safe reconstruction of the product logic. No proprietary screen, customer data or internal implementation detail is shown.</div>
-    </div>
-  </section>
-
-  <section id="decisions">
-    <div class="eyebrow">04 · DECISION LOG</div>
-    <h2>The quality of the product depended on dozens of small decisions being made explicit.</h2>
-    <p>These decisions look tactical, but they determine whether the experience feels coherent and whether engineering and QA interpret the requirement the same way.</p>
-    <div class="decision-table">
-      <div class="decision-row header"><div>Decision</div><div>Reasoning</div><div>Product consequence</div></div>
-      <div class="decision-row"><div><b>Keep Topic Analysis and Theme Discovery separate</b></div><div><span>Known taxonomy and emerging patterns answer different user questions and require different governance.</span></div><div><span>Users can analyze what is already tracked without confusing it with candidates that may become part of the taxonomy.</span></div></div>
-      <div class="decision-row"><div><b>Keep Keyword Explorer as its own surface</b></div><div><span>Keywords are supporting language signals, not the same thing as topics or discovery candidates.</span></div><div><span>The information model stays clean while users still get direct access to language trends.</span></div></div>
-      <div class="decision-row"><div><b>Show exactly three AI insights</b></div><div><span>Unlimited generated insights reduce focus and make the page feel like another report.</span></div><div><span>The system presents one positive, one neutral and one negative signal to create a balanced executive view.</span></div></div>
-      <div class="decision-row"><div><b>Use sentiment as the comment filter</b></div><div><span>Once users drill into evidence, duplicated topic and insight selectors add friction without creating new value.</span></div><div><span>Comments remain easy to inspect while the selected context is shown above the evidence.</span></div></div>
-      <div class="decision-row"><div><b>Add NPS and period change</b></div><div><span>Volume alone does not show business relevance or movement.</span></div><div><span>Topic and keyword views communicate scale, customer advocacy and directional change together.</span></div></div>
-    </div>
-  </section>
-
-  <section id="admin">
-    <div class="eyebrow">05 · HUMAN GOVERNANCE FOR AI DISCOVERY</div>
-    <h2>Discovery needed a lifecycle, not a magic button.</h2>
-    <p class="section-lead">I designed the admin concept so the system can surface candidates while humans retain control over what becomes part of the managed taxonomy.</p>
-    <div class="timeline">
-      <div class="timeline-item"><code>01</code><div><h3>Observed</h3><p>The system detects a recurring pattern in feedback. Observation alone does not make it a managed topic.</p></div></div>
-      <div class="timeline-item"><code>02</code><div><h3>Eligible for review</h3><p>A candidate reaches the configured occurrence and penetration threshold. Only eligible candidates enter the active review queue.</p></div></div>
-      <div class="timeline-item"><code>03</code><div><h3>Admin decision</h3><p>The reviewer can approve, merge, reject or suppress. Subtopic candidates can be assigned to or moved under a parent.</p></div></div>
-      <div class="timeline-item"><code>04</code><div><h3>Future enrichment</h3><p>Approved taxonomy changes affect future enrichment. The audit trail records promoted or declined decisions and who made them.</p></div></div>
-    </div>
-    <div class="artifact"><div class="artifact-title">Candidate review information</div><div class="flow"><span>Candidate type</span><span>Why it was surfaced</span><span>Suggested parent</span><span>Closest existing topic</span><span>Volume</span><span>Share of feedback</span><span>Period change</span></div><div class="artifact-note">The goal is to make an AI suggestion reviewable rather than asking an administrator to trust a label with no context.</div></div>
-  </section>
-
-  <section id="requirements">
-    <div class="eyebrow">06 · FROM PRODUCT MODEL TO BUILDABLE REQUIREMENTS</div>
-    <h2>I carried the decisions into rules that could be built and tested.</h2>
-    <p>The FRD was not a transcript of stakeholder requests. It became the contract for how the experience should behave. I kept requirements outcome focused, placed calculations under business rules, and used acceptance criteria to remove implementation ambiguity.</p>
-    <div class="rule-list">
-      <div class="rule"><b>NPS</b><span>For eligible survey responses, NPS is the percentage of promoters minus the percentage of detractors. Example: 52% promoters and 14% detractors results in 38.0.</span></div>
-      <div class="rule"><b>Period change</b><span>Current period total compared with previous period total. Example: 120 versus 100 displays a 20.0% increase.</span></div>
-      <div class="rule"><b>No eligible NPS</b><span>When a keyword or topic has no eligible NPS responses, the product displays a not available state rather than implying a score of zero.</span></div>
-      <div class="rule"><b>Zero denominator</b><span>When the previous period total is zero, percentage change is not calculated because the denominator would make the result misleading.</span></div>
-    </div>
-    <div class="before-after">
-      <div class="state-card"><small>WEAK STORY</small><h3>Build the analytics page</h3><ul><li>Mixes multiple product jobs</li><li>Leaves defaults unresolved</li><li>Pushes business decisions into development</li><li>Creates broad QA interpretation</li></ul></div>
-      <div class="state-card after"><small>VERTICAL SLICE</small><h3>Deliver a usable product outcome</h3><ul><li>One clear user job</li><li>UI, data and interaction behavior together</li><li>Business rules attached to the outcome</li><li>Acceptance criteria written to be testable</li></ul></div>
-    </div>
-  </section>
-
-  <section id="delivery">
-    <div class="eyebrow">07 · CROSS FUNCTIONAL DELIVERY</div>
-    <h2>The work moved through design, stakeholder review, requirements and engineering readiness.</h2>
-    <p>I used competitor validation to test the product model, not to copy screens. Qualtrics and Medallia helped validate patterns such as topic drill down, sentiment context, discovery candidates and human approval. Internal review then sharpened the experience around our own product logic.</p>
-    <div class="decision-grid">
-      <div class="decision"><code>DISCOVERY</code><h3>Clarify language and user jobs</h3><p>Resolve the difference between topic, theme, keyword, insight and evidence before detailing screens.</p></div>
-      <div class="decision"><code>DESIGN</code><h3>Reduce duplicate controls</h3><p>Use the page context and selected breadcrumb to remove selectors that repeated information users already had.</p></div>
-      <div class="decision"><code>REQUIREMENTS</code><h3>Turn visuals into behavior</h3><p>Document business rules, defaults, permissions, filters, exports, sorting, edge cases and definitions.</p></div>
-      <div class="decision"><code>HANDOFF</code><h3>Write for engineering and QA</h3><p>Slice stories around usable outcomes so teams can build and validate the intended behavior end to end.</p></div>
-    </div>
-  </section>
-
-  <section id="measurement">
-    <div class="eyebrow">08 · MEASUREMENT AND CURRENT STATUS</div>
-    <h2>I do not manufacture an outcome metric before a product ships.</h2>
-    <p>This work is still a product definition and delivery case, so I separate evidence of product quality from post release business outcomes. The case is strong because the reasoning, artifacts and decisions are inspectable. Outcome metrics should be measured once customers are using the capability.</p>
-    <div class="measure-grid">
-      <div class="measure"><b>Time to insight</b><span>How quickly a user can move from a high level signal to the supporting customer evidence.</span></div>
-      <div class="measure"><b>Insight engagement</b><span>Whether AI insights are opened, investigated and connected to comments or recommended actions.</span></div>
-      <div class="measure"><b>Candidate decision rate</b><span>How often eligible discovery candidates are reviewed and resolved by administrators.</span></div>
-      <div class="measure"><b>Taxonomy quality</b><span>Whether approved candidates improve coverage without creating duplicate or low value categories.</span></div>
-      <div class="measure"><b>Drill down behavior</b><span>Whether users inspect the evidence behind topics, keywords and AI generated insights.</span></div>
-      <div class="measure"><b>Export and repeat usage</b><span>Whether the capability becomes part of recurring analysis rather than a one time exploration.</span></div>
-    </div>
-    <div class="status-banner"><b>CURRENT EVIDENCE</b><p>Product architecture, decision records, FRD content, business rules, acceptance criteria, story slicing and delivery readiness. Post release adoption and business outcome data will be added only when it exists.</p></div>
+    <div class="portfolio-caption">Recreated portfolio view using sample data. No proprietary customer data or internal screens are shown.</div>
   </section>
 
   <section>
-    <div class="eyebrow">WHAT THIS CASE PROVES</div>
-    <h2>I can lead AI product work without treating AI itself as the product.</h2>
-    <p>I can take a broad AI ambition, find the underlying user jobs, separate overlapping concepts, design human governance, make edge cases explicit and carry the model down to buildable, testable requirements.</p>
+    <div class="eyebrow">01 · AI INSIGHTS</div>
+    <div class="case-split"><div><h2>Give leaders the story before giving them another dashboard.</h2><p>AI Insights is the executive entry point. Instead of generating an unlimited list, the product intentionally surfaces three key insights: one positive, one neutral and one negative. Each insight connects to a focus area, recommended action, expected impact and the customer comments used to support it.</p></div><div class="mini-principle"><small>PRODUCT RULE</small><strong>Exactly 3 insights</strong><span>Positive · Neutral · Negative</span></div></div>
+
+    <div class="product-frame compact-frame">
+      <div class="screen-head"><div><small>AI INSIGHTS</small><h3>What changed in customer feedback?</h3></div><div class="screen-stat"><b>12,480</b><span>comments analyzed</span></div></div>
+      <div class="insight-ui-grid">
+        <div class="insight-ui positive"><small>POSITIVE</small><h4>Service friendliness improved</h4><p>Customers increasingly mention helpful staff and clear explanations.</p><div class="insight-meta"><span>Where to focus · Frontline service</span><span>Expected impact · Retention</span></div></div>
+        <div class="insight-ui neutral"><small>NEUTRAL</small><h4>Appointment scheduling is shifting</h4><p>Digital booking mentions are rising while phone scheduling remains stable.</p><div class="insight-meta"><span>Where to focus · Booking journey</span><span>Expected impact · Convenience</span></div></div>
+        <div class="insight-ui negative"><small>NEGATIVE</small><h4>Wait time complaints increased</h4><p>Longer waits are concentrated in a small set of locations and peak periods.</p><div class="insight-meta"><span>Where to focus · Capacity</span><span>Expected impact · Satisfaction</span></div></div>
+      </div>
+      <div class="comment-preview"><div class="comment-head"><b>Customer comments used by AI</b><span>Filter · Negative</span></div><div class="comment-line"><i></i><p>“The staff were helpful, but the wait was much longer than expected.”</p></div><div class="comment-line"><i></i><p>“Booking was easy online. I would use it again.”</p></div></div>
+    </div>
   </section>
 
-  <section class="next"><div class="eyebrow">NEXT CASE STUDY</div><a href="case-platform.html">Enterprise platform product →</a></section>
+  <section>
+    <div class="eyebrow">02 · TOPIC ANALYSIS</div>
+    <h2>Show how the topics the business already tracks are performing.</h2>
+    <p class="section-lead">Topic Analysis gives enterprise teams a structured view of topics and subtopics, with sentiment distribution, NPS and change versus the previous period. Every row can be drilled into to inspect the underlying customer comments.</p>
+
+    <div class="product-frame compact-frame">
+      <div class="screen-toolbar"><div class="toolbar-group"><span class="ui-pill active">Last 90 days</span><span class="ui-pill">Hierarchy · All</span><span class="ui-pill">Source · Surveys + Reviews</span></div><span class="ui-pill">Export</span></div>
+      <div class="screen-title-row"><div><small>TOPIC ANALYSIS</small><h3>Topics and subtopics</h3></div><div class="sort-label">Sort · Frequency</div></div>
+      <div class="data-table">
+        <div class="data-row data-head"><span>Topic / Subtopic</span><span>Sentiment</span><span>NPS</span><span>Change</span></div>
+        <div class="data-row"><span><b>Service Experience</b><small>Staff friendliness</small></span><span><div class="sentiment-bar"><i class="pos" style="width:68%"></i><i class="neu" style="width:20%"></i><i class="neg" style="width:12%"></i></div></span><span><b>42.0</b></span><span class="up">▲ 18.4%</span></div>
+        <div class="data-row"><span><b>Appointment</b><small>Wait time</small></span><span><div class="sentiment-bar"><i class="pos" style="width:28%"></i><i class="neu" style="width:24%"></i><i class="neg" style="width:48%"></i></div></span><span><b>8.0</b></span><span class="down">▼ 11.2%</span></div>
+        <div class="data-row"><span><b>Product Quality</b><small>Reliability</small></span><span><div class="sentiment-bar"><i class="pos" style="width:61%"></i><i class="neu" style="width:27%"></i><i class="neg" style="width:12%"></i></div></span><span><b>38.0</b></span><span class="up">▲ 7.6%</span></div>
+      </div>
+      <div class="drill-hint">Select a topic or subtopic → open the customer comments behind the signal</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">03 · KEYWORD EXPLORER</div>
+    <div class="case-split"><div><h2>Let users inspect the language itself, without confusing keywords with topics.</h2><p>Keyword Explorer is a separate analytical surface. It defaults to all keywords and highest volume, then lets users filter by sentiment and drill directly into comments. This gives analysts a fast way to investigate the vocabulary customers are using around an issue.</p></div><div class="mini-principle"><small>DEFAULTS</small><strong>All keywords</strong><span>Highest volume first</span></div></div>
+
+    <div class="product-frame compact-frame">
+      <div class="screen-toolbar"><div class="toolbar-group"><span class="ui-pill active">All Sentiments</span><span class="ui-pill">Positive</span><span class="ui-pill">Neutral</span><span class="ui-pill">Negative</span></div><span class="ui-pill">Highest Volume</span></div>
+      <div class="data-table keyword-table">
+        <div class="data-row data-head"><span>Keyword</span><span>Sentiment</span><span>NPS</span><span>Change</span></div>
+        <div class="data-row"><span><b>wait</b><small>1,284 mentions</small></span><span><div class="sentiment-bar"><i class="pos" style="width:18%"></i><i class="neu" style="width:22%"></i><i class="neg" style="width:60%"></i></div></span><span><b>5.0</b></span><span class="up">▲ 20.0%</span></div>
+        <div class="data-row"><span><b>helpful</b><small>972 mentions</small></span><span><div class="sentiment-bar"><i class="pos" style="width:78%"></i><i class="neu" style="width:16%"></i><i class="neg" style="width:6%"></i></div></span><span><b>51.0</b></span><span class="up">▲ 9.8%</span></div>
+        <div class="data-row"><span><b>booking</b><small>731 mentions</small></span><span><div class="sentiment-bar"><i class="pos" style="width:54%"></i><i class="neu" style="width:30%"></i><i class="neg" style="width:16%"></i></div></span><span><b>31.0</b></span><span class="down">▼ 3.1%</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">04 · THEME DISCOVERY</div>
+    <h2>Use AI to surface emerging patterns, then keep humans in control of the taxonomy.</h2>
+    <p class="section-lead">Theme Discovery is the governed AI layer. The system proposes eligible topic or subtopic candidates and gives an administrator enough context to decide whether to approve, merge, reject or suppress them.</p>
+
+    <div class="product-frame compact-frame admin-screen">
+      <div class="screen-title-row"><div><small>THEME DISCOVERY</small><h3>Eligible for review</h3></div><div class="sort-label">3 candidates</div></div>
+      <div class="candidate-card">
+        <div class="candidate-main"><div><small>SUGGESTED SUBTOPIC</small><h4>Advisor Knowledge</h4><p>Customers are increasingly discussing whether staff can explain product and service options clearly.</p></div><div class="candidate-volume"><b>486</b><span>mentions</span><em>▲ 28%</em></div></div>
+        <div class="candidate-details"><span><small>Suggested parent</small><b>Service Experience</b></span><span><small>Closest existing topic</small><b>Staff Helpfulness</b></span><span><small>Share of feedback</small><b>6.4%</b></span></div>
+        <div class="candidate-actions"><button>Approve</button><button>Merge</button><button>Reject</button><button>Suppress</button></div>
+      </div>
+      <div class="governance-flow"><span>Observed</span><i>→</i><span>Eligible</span><i>→</i><span class="active">Human review</span><i>→</i><span>Future enrichment</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">PRODUCT DECISIONS</div>
+    <h2>The product works because the rules behind the screens are deliberate.</h2>
+    <div class="decision-grid">
+      <div class="decision"><code>01</code><h3>Separate known and emerging analysis</h3><p>Topic Analysis measures what the business already tracks. Theme Discovery handles new patterns that may deserve a place in the taxonomy.</p></div>
+      <div class="decision"><code>02</code><h3>Keep keywords separate</h3><p>Keywords are language signals, not managed topics. Giving them their own surface prevents the information model from becoming muddy.</p></div>
+      <div class="decision"><code>03</code><h3>Make AI explainable</h3><p>Insights and themes always connect back to the underlying customer comments so users can verify the signal before acting.</p></div>
+      <div class="decision"><code>04</code><h3>Use business context, not volume alone</h3><p>NPS and period change sit beside frequency so users can see customer advocacy and movement, not just how often something appears.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">MAKING IT BUILDABLE</div>
+    <h2>I took the product from concept to implementation ready behavior.</h2>
+    <p class="section-lead">My work covered the product model, page behavior, filters, default states, calculations, drill downs, governance actions, edge cases, functional requirements and acceptance criteria needed for engineering and QA to build the experience consistently.</p>
+    <div class="rule-list">
+      <div class="rule"><b>NPS</b><span>Promoter percentage minus detractor percentage for eligible survey responses. Example: 52% promoters and 14% detractors displays 38.0.</span></div>
+      <div class="rule"><b>Period change</b><span>Current period compared with the previous equivalent period. Example: 120 versus 100 displays a 20.0% increase.</span></div>
+      <div class="rule"><b>No eligible data</b><span>Where NPS cannot be calculated, the interface shows a not available state rather than a misleading zero.</span></div>
+      <div class="rule"><b>Comment evidence</b><span>Users can inspect all comments used by the analysis and filter the evidence by sentiment.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">WHAT THIS CASE DEMONSTRATES</div>
+    <h2>AI product leadership that connects model capability to an enterprise workflow.</h2>
+    <div class="measure-grid">
+      <div class="measure"><b>Product architecture</b><span>Four clearly differentiated analytics experiences working as one platform.</span></div>
+      <div class="measure"><b>AI governance</b><span>Human review for emerging topics and subtopics instead of opaque automatic taxonomy changes.</span></div>
+      <div class="measure"><b>Explainability</b><span>Every insight can be traced back to the customer evidence behind it.</span></div>
+      <div class="measure"><b>Delivery depth</b><span>Business rules, defaults, calculations, acceptance criteria and edge cases defined for implementation.</span></div>
+    </div>
+  </section>
+
+  <section class="next"><div class="eyebrow">NEXT CASE STUDY</div><a href="case-platform.html">Enterprise platform product leadership →</a></section>
 </article>
 </main>
 <script src="script.js"></script>
