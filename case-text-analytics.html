@@ -3,77 +3,148 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>AI Customer Intelligence | Rihannat Amoo</title>
+<title>AI Customer Intelligence Case Study | Rihannat Amoo</title>
 <link rel="stylesheet" href="styles.css"/>
 <link rel="stylesheet" href="case.css"/>
 </head>
 <body>
-<header class="case-header"><a class="brand" href="index.html">rihannat<span>.product</span></a><a class="back" href="index.html#evidence">← Selected evidence</a></header>
+<header class="case-header"><a class="brand" href="index.html">rihannat<span>.product</span></a><a class="back" href="index.html#work">← Case studies</a></header>
 <main>
 <article class="case-page">
-  <div class="case-meta">EVIDENCE 01 · AI CUSTOMER INTELLIGENCE · ENTERPRISE SAAS</div>
-  <h1>From a fuzzy AI vision to a coherent customer intelligence product model.</h1>
-  <p class="case-intro">The challenge was not simply to add AI. It was to define what each layer of the experience should mean, where AI creates new value, how users verify the insight and what engineering should actually build.</p>
+  <div class="case-meta">CASE STUDY 01 · AI CUSTOMER INTELLIGENCE · ENTERPRISE SAAS</div>
+  <h1>Turning an ambiguous AI brief into a coherent customer intelligence product.</h1>
+  <p class="case-intro">The brief sounded simple: modernize text analytics with AI. The real work was defining what the product should become, separating overlapping concepts, creating a trustworthy path from signal to evidence, and translating the model into behavior engineering and QA could implement.</p>
 
   <div class="summary">
     <div><small>My remit</small><strong>Product discovery and definition</strong></div>
     <div><small>Product</small><strong>Enterprise customer experience SaaS</strong></div>
-    <div><small>Core model</small><strong>Topics · themes · sentiment · verbatim</strong></div>
+    <div><small>Scope</small><strong>Insights, topics, themes, keywords and comments</strong></div>
     <div><small>Stage</small><strong>Definition and delivery readiness</strong></div>
   </div>
 
-  <section>
-    <div class="eyebrow">THE PRODUCT PROBLEM</div>
-    <h2>The product already had signals. AI risked adding more labels without adding more clarity.</h2>
-    <p>Users could already work with known topics, subtopics, sentiment and customer comments. Proposed AI concepts introduced themes, discovery candidates and additional keyword behavior. Several ideas sounded useful in isolation, but they overlapped when viewed as one product.</p>
-    <p>The product question became more precise: what belongs to the known taxonomy, what is genuinely emerging, how does the user move from pattern to evidence, and what must remain explainable?</p>
-    <div class="callout"><b>The distinction I protected:</b> topic analysis explains what customers are saying about categories the business already tracks. Theme discovery surfaces patterns the taxonomy may not yet capture. Verbatim insight gives the customer evidence behind either signal.</div>
+  <nav class="case-toc" aria-label="Case study sections">
+    <a href="#context">Context</a><a href="#diagnosis">Diagnosis</a><a href="#architecture">Product model</a><a href="#decisions">Decisions</a><a href="#admin">Admin workflow</a><a href="#requirements">Requirements</a><a href="#delivery">Delivery</a><a href="#measurement">Measurement</a>
+  </nav>
+
+  <section id="context">
+    <div class="eyebrow">01 · CONTEXT</div>
+    <h2>The existing product could classify feedback. The opportunity was to help users understand what was changing and why.</h2>
+    <p class="section-lead">The legacy capability already processed customer comments. That meant the challenge was not starting from zero. It was deciding how a mature classification experience should evolve when AI introduces discovery, synthesis and recommendation.</p>
+    <div class="context-grid">
+      <div class="context-card"><small>INPUTS</small><h3>Structured and unstructured feedback</h3><p>Survey comments and review data entered through file imports or APIs, with future expansion planned for additional feedback sources.</p></div>
+      <div class="context-card"><small>PROCESSING</small><h3>Sentiment and taxonomy matching</h3><p>The current system used sentiment analysis, configured topic patterns, keywords and comment level evidence.</p></div>
+      <div class="context-card"><small>CURRENT VALUE</small><h3>Understand known categories</h3><p>Teams could see how customers were talking about topics the business had already defined and chosen to monitor.</p></div>
+      <div class="context-card"><small>PRODUCT GAP</small><h3>Discover the unexpected</h3><p>The existing model was weaker at surfacing new patterns that had not already been encoded into the taxonomy.</p></div>
+    </div>
+    <div class="callout"><b>The product question I reframed:</b><p>How do we combine known taxonomy analysis, emerging pattern discovery, AI generated synthesis and customer comments without creating four different names for the same thing?</p></div>
   </section>
 
-  <section>
-    <div class="eyebrow">WHAT I OWNED</div>
-    <h2>I translated a broad future state into a product model teams could reason about and build.</h2>
+  <section id="diagnosis">
+    <div class="eyebrow">02 · PRODUCT DIAGNOSIS</div>
+    <h2>The main risk was conceptual overlap, not lack of features.</h2>
+    <p>Early concepts included topics, subtopics, themes, discovery candidates, keywords, sentiment, AI insights and customer comments. Each item sounded reasonable in isolation. Together, they created ambiguity about where a user should go for an answer and what each surface actually owned.</p>
+    <p>I used three product tests to clarify the model: what question is the user trying to answer, whether the signal is known or emerging, and what evidence the user needs before acting on it.</p>
     <div class="decision-grid">
-      <div class="decision"><code>01</code><h3>Product architecture</h3><p>Defined the roles of topics, subtopics, keywords, theme candidates and verbatim evidence so each capability had a clear job.</p></div>
-      <div class="decision"><code>02</code><h3>Signal to evidence flow</h3><p>Structured the experience so users can move from aggregate patterns into the supporting customer comments instead of trusting an opaque AI output.</p></div>
-      <div class="decision"><code>03</code><h3>Behavior and defaults</h3><p>Specified page context, ranking logic, search behavior, sentiment filtering, cluster behavior, exports, permissions and key default states.</p></div>
-      <div class="decision"><code>04</code><h3>Delivery definition</h3><p>Converted product decisions and mockups into functional requirements, business rules, acceptance criteria and system expectations for engineering and QA.</p></div>
+      <div class="decision"><code>TEST 01</code><h3>What question does this page answer?</h3><p>A page needed a distinct job. If two surfaces answered the same question, the model was not yet clear enough.</p></div>
+      <div class="decision"><code>TEST 02</code><h3>Is the signal known or emerging?</h3><p>Known taxonomy and new pattern discovery require different workflows, governance and user expectations.</p></div>
+      <div class="decision"><code>TEST 03</code><h3>How can the user verify it?</h3><p>Every aggregate insight needed a credible path back to the customer comments that support it.</p></div>
+      <div class="decision"><code>TEST 04</code><h3>What happens next?</h3><p>Discovery is useful only when users can interpret, approve, merge, reject, suppress or otherwise act on the signal.</p></div>
     </div>
   </section>
 
-  <section>
-    <div class="eyebrow">PRODUCT DECISION RECORD</div>
-    <h2>The value was in making the model explicit before implementation.</h2>
+  <section id="architecture">
+    <div class="eyebrow">03 · FUTURE STATE PRODUCT MODEL</div>
+    <h2>I separated four product jobs instead of forcing everything into one analytics page.</h2>
+    <div class="surface-grid">
+      <div class="surface-card"><small>SURFACE 01</small><h3>AI Insights</h3><p>Executive synthesis of what matters now.</p><ul><li>Exactly three key insights</li><li>One positive, one neutral and one negative</li><li>Where to focus, suggested actions and expected impact</li><li>All supporting comments available with sentiment filtering</li></ul></div>
+      <div class="surface-card"><small>SURFACE 02</small><h3>Topic Analysis</h3><p>Performance of the taxonomy the business already tracks.</p><ul><li>Topic and subtopic analysis</li><li>Sentiment distribution and NPS</li><li>Change versus previous period</li><li>Frequency as the default sort</li><li>Drill down to comments</li></ul></div>
+      <div class="surface-card"><small>SURFACE 03</small><h3>Keyword Explorer</h3><p>A separate way to inspect language patterns without confusing keywords with taxonomy.</p><ul><li>All keywords as the default view</li><li>Highest volume as the default sort</li><li>Sentiment, NPS and period change</li><li>Direct drill down to supporting comments</li></ul></div>
+      <div class="surface-card"><small>SURFACE 04</small><h3>Theme Discovery</h3><p>Governed discovery for patterns that may deserve a place in the taxonomy.</p><ul><li>Topic and subtopic candidates only</li><li>Suggested parent and closest existing topic</li><li>Volume, penetration and period change</li><li>Approve, merge, reject and suppress actions</li></ul></div>
+    </div>
     <div class="artifact">
-      <div class="artifact-title">Sanitized capability model</div>
-      <div class="flow"><span>Shared context</span><i>→</i><span>Known topic analysis</span><i>+</i><span>Emerging theme discovery</span><i>+</i><span>Verbatim evidence</span><i>→</i><span>Interpretation and action</span></div>
-      <div class="artifact-note">Portfolio reconstruction of the product logic. No proprietary customer data or internal screen is shown.</div>
-    </div>
-    <div class="artifact">
-      <div class="artifact-title">Examples of decisions made explicit</div>
-      <div class="flow"><span>All keywords as default</span><span>Top ranking depends on selected dimension</span><span>Sentiment filter includes all, positive, negative and neutral</span><span>Topic and subtopic hover context</span><span>Shared permissions and export rules</span></div>
-      <div class="artifact-note">A mockup becomes delivery ready only when expected behavior is specific enough to build and test.</div>
+      <div class="artifact-title">Recreated capability model</div>
+      <div class="flow"><span>Feedback sources</span><i>→</i><span>Enrichment</span><i>→</i><span>Known topic analysis</span><i>+</i><span>Emerging theme discovery</span><i>+</i><span>AI synthesis</span><i>→</i><span>Customer evidence</span><i>→</i><span>Decision or action</span></div>
+      <div class="artifact-note">Public safe reconstruction of the product logic. No proprietary screen, customer data or internal implementation detail is shown.</div>
     </div>
   </section>
 
-  <section>
-    <div class="eyebrow">WHY THIS MATTERS</div>
-    <h2>AI product leadership is often a clarity problem before it becomes a model problem.</h2>
-    <p>Without clear capability boundaries, teams can ship overlapping features that confuse users and create implementation debt. This work reduces that risk by defining the user value, the information model and the expected behavior together.</p>
-    <div class="metric-grid">
-      <div class="metric"><b>1</b><span>coherent model connecting known topics, emerging themes and customer evidence</span></div>
-      <div class="metric"><b>FRD</b><span>functional requirements, business rules and acceptance criteria</span></div>
-      <div class="metric"><b>QA ready</b><span>defaults and interactions written to be testable</span></div>
+  <section id="decisions">
+    <div class="eyebrow">04 · DECISION LOG</div>
+    <h2>The quality of the product depended on dozens of small decisions being made explicit.</h2>
+    <p>These decisions look tactical, but they determine whether the experience feels coherent and whether engineering and QA interpret the requirement the same way.</p>
+    <div class="decision-table">
+      <div class="decision-row header"><div>Decision</div><div>Reasoning</div><div>Product consequence</div></div>
+      <div class="decision-row"><div><b>Keep Topic Analysis and Theme Discovery separate</b></div><div><span>Known taxonomy and emerging patterns answer different user questions and require different governance.</span></div><div><span>Users can analyze what is already tracked without confusing it with candidates that may become part of the taxonomy.</span></div></div>
+      <div class="decision-row"><div><b>Keep Keyword Explorer as its own surface</b></div><div><span>Keywords are supporting language signals, not the same thing as topics or discovery candidates.</span></div><div><span>The information model stays clean while users still get direct access to language trends.</span></div></div>
+      <div class="decision-row"><div><b>Show exactly three AI insights</b></div><div><span>Unlimited generated insights reduce focus and make the page feel like another report.</span></div><div><span>The system presents one positive, one neutral and one negative signal to create a balanced executive view.</span></div></div>
+      <div class="decision-row"><div><b>Use sentiment as the comment filter</b></div><div><span>Once users drill into evidence, duplicated topic and insight selectors add friction without creating new value.</span></div><div><span>Comments remain easy to inspect while the selected context is shown above the evidence.</span></div></div>
+      <div class="decision-row"><div><b>Add NPS and period change</b></div><div><span>Volume alone does not show business relevance or movement.</span></div><div><span>Topic and keyword views communicate scale, customer advocacy and directional change together.</span></div></div>
     </div>
   </section>
 
+  <section id="admin">
+    <div class="eyebrow">05 · HUMAN GOVERNANCE FOR AI DISCOVERY</div>
+    <h2>Discovery needed a lifecycle, not a magic button.</h2>
+    <p class="section-lead">I designed the admin concept so the system can surface candidates while humans retain control over what becomes part of the managed taxonomy.</p>
+    <div class="timeline">
+      <div class="timeline-item"><code>01</code><div><h3>Observed</h3><p>The system detects a recurring pattern in feedback. Observation alone does not make it a managed topic.</p></div></div>
+      <div class="timeline-item"><code>02</code><div><h3>Eligible for review</h3><p>A candidate reaches the configured occurrence and penetration threshold. Only eligible candidates enter the active review queue.</p></div></div>
+      <div class="timeline-item"><code>03</code><div><h3>Admin decision</h3><p>The reviewer can approve, merge, reject or suppress. Subtopic candidates can be assigned to or moved under a parent.</p></div></div>
+      <div class="timeline-item"><code>04</code><div><h3>Future enrichment</h3><p>Approved taxonomy changes affect future enrichment. The audit trail records promoted or declined decisions and who made them.</p></div></div>
+    </div>
+    <div class="artifact"><div class="artifact-title">Candidate review information</div><div class="flow"><span>Candidate type</span><span>Why it was surfaced</span><span>Suggested parent</span><span>Closest existing topic</span><span>Volume</span><span>Share of feedback</span><span>Period change</span></div><div class="artifact-note">The goal is to make an AI suggestion reviewable rather than asking an administrator to trust a label with no context.</div></div>
+  </section>
+
+  <section id="requirements">
+    <div class="eyebrow">06 · FROM PRODUCT MODEL TO BUILDABLE REQUIREMENTS</div>
+    <h2>I carried the decisions into rules that could be built and tested.</h2>
+    <p>The FRD was not a transcript of stakeholder requests. It became the contract for how the experience should behave. I kept requirements outcome focused, placed calculations under business rules, and used acceptance criteria to remove implementation ambiguity.</p>
+    <div class="rule-list">
+      <div class="rule"><b>NPS</b><span>For eligible survey responses, NPS is the percentage of promoters minus the percentage of detractors. Example: 52% promoters and 14% detractors results in 38.0.</span></div>
+      <div class="rule"><b>Period change</b><span>Current period total compared with previous period total. Example: 120 versus 100 displays a 20.0% increase.</span></div>
+      <div class="rule"><b>No eligible NPS</b><span>When a keyword or topic has no eligible NPS responses, the product displays a not available state rather than implying a score of zero.</span></div>
+      <div class="rule"><b>Zero denominator</b><span>When the previous period total is zero, percentage change is not calculated because the denominator would make the result misleading.</span></div>
+    </div>
+    <div class="before-after">
+      <div class="state-card"><small>WEAK STORY</small><h3>Build the analytics page</h3><ul><li>Mixes multiple product jobs</li><li>Leaves defaults unresolved</li><li>Pushes business decisions into development</li><li>Creates broad QA interpretation</li></ul></div>
+      <div class="state-card after"><small>VERTICAL SLICE</small><h3>Deliver a usable product outcome</h3><ul><li>One clear user job</li><li>UI, data and interaction behavior together</li><li>Business rules attached to the outcome</li><li>Acceptance criteria written to be testable</li></ul></div>
+    </div>
+  </section>
+
+  <section id="delivery">
+    <div class="eyebrow">07 · CROSS FUNCTIONAL DELIVERY</div>
+    <h2>The work moved through design, stakeholder review, requirements and engineering readiness.</h2>
+    <p>I used competitor validation to test the product model, not to copy screens. Qualtrics and Medallia helped validate patterns such as topic drill down, sentiment context, discovery candidates and human approval. Internal review then sharpened the experience around our own product logic.</p>
+    <div class="decision-grid">
+      <div class="decision"><code>DISCOVERY</code><h3>Clarify language and user jobs</h3><p>Resolve the difference between topic, theme, keyword, insight and evidence before detailing screens.</p></div>
+      <div class="decision"><code>DESIGN</code><h3>Reduce duplicate controls</h3><p>Use the page context and selected breadcrumb to remove selectors that repeated information users already had.</p></div>
+      <div class="decision"><code>REQUIREMENTS</code><h3>Turn visuals into behavior</h3><p>Document business rules, defaults, permissions, filters, exports, sorting, edge cases and definitions.</p></div>
+      <div class="decision"><code>HANDOFF</code><h3>Write for engineering and QA</h3><p>Slice stories around usable outcomes so teams can build and validate the intended behavior end to end.</p></div>
+    </div>
+  </section>
+
+  <section id="measurement">
+    <div class="eyebrow">08 · MEASUREMENT AND CURRENT STATUS</div>
+    <h2>I do not manufacture an outcome metric before a product ships.</h2>
+    <p>This work is still a product definition and delivery case, so I separate evidence of product quality from post release business outcomes. The case is strong because the reasoning, artifacts and decisions are inspectable. Outcome metrics should be measured once customers are using the capability.</p>
+    <div class="measure-grid">
+      <div class="measure"><b>Time to insight</b><span>How quickly a user can move from a high level signal to the supporting customer evidence.</span></div>
+      <div class="measure"><b>Insight engagement</b><span>Whether AI insights are opened, investigated and connected to comments or recommended actions.</span></div>
+      <div class="measure"><b>Candidate decision rate</b><span>How often eligible discovery candidates are reviewed and resolved by administrators.</span></div>
+      <div class="measure"><b>Taxonomy quality</b><span>Whether approved candidates improve coverage without creating duplicate or low value categories.</span></div>
+      <div class="measure"><b>Drill down behavior</b><span>Whether users inspect the evidence behind topics, keywords and AI generated insights.</span></div>
+      <div class="measure"><b>Export and repeat usage</b><span>Whether the capability becomes part of recurring analysis rather than a one time exploration.</span></div>
+    </div>
+    <div class="status-banner"><b>CURRENT EVIDENCE</b><p>Product architecture, decision records, FRD content, business rules, acceptance criteria, story slicing and delivery readiness. Post release adoption and business outcome data will be added only when it exists.</p></div>
+  </section>
+
   <section>
-    <div class="eyebrow">WHAT THIS PROVES</div>
+    <div class="eyebrow">WHAT THIS CASE PROVES</div>
     <h2>I can lead AI product work without treating AI itself as the product.</h2>
-    <p>I separate model capability from user value, resolve terminology and information architecture, design for explainability and carry the resulting product decisions into implementation detail.</p>
+    <p>I can take a broad AI ambition, find the underlying user jobs, separate overlapping concepts, design human governance, make edge cases explicit and carry the model down to buildable, testable requirements.</p>
   </section>
 
-  <section class="next"><div class="eyebrow">NEXT EVIDENCE</div><a href="case-platform.html">Enterprise platform decisions →</a></section>
+  <section class="next"><div class="eyebrow">NEXT CASE STUDY</div><a href="case-platform.html">Enterprise platform product →</a></section>
 </article>
 </main>
 <script src="script.js"></script>
