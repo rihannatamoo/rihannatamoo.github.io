@@ -12,10 +12,10 @@
       sourceFour:'Highlights + fixes',
       output:'Release Notes · Draft',
       draftTitle:'Release highlights',
-      intro:'This release improves reporting flexibility, configuration and product stability.',
-      one:['Improved configurable reporting behavior','Expanded product administration options'],
+      intro:'This release improves document generation quality, onboarding and workflow reliability.',
+      one:['Improved context handling for generated documents','Simplified setup for recurring documentation workflows'],
       twoLabel:'FIXES',
-      two:['Resolved issues affecting selected reporting flows','Improved consistency across product messages']
+      two:['Resolved issues affecting longer document generation','Improved consistency in generated section structure']
     },
     sprint:{
       title:'Create a sprint summary',
