@@ -59,3 +59,13 @@
   .feature-case-copy{padding:30px 26px}.case-facts{grid-template-columns:1fr}.feature-preview{padding:20px;min-height:auto}.preview-layout{grid-template-columns:1fr;min-height:0}.preview-nav{display:grid;grid-template-columns:1fr 1fr;border-right:0;border-bottom:1px solid #e0e4f2}
   .case-grid,.leadership-grid{grid-template-columns:1fr}.portfolio-case{min-height:0}.case-visual{min-height:220px}.proof-list div{grid-template-columns:1fr;gap:6px}
 }
+
+
+/* Final homepage polish */
+.feature-case-copy,.case-body,.preview-canvas{min-width:0}
+.portfolio-case h3,.feature-case h3{overflow-wrap:break-word}
+@media(max-width:760px){
+  .site-header .nav{display:flex;gap:14px}
+  .site-header .nav a{display:none}
+  .site-header .nav a:first-child,.site-header .nav a:last-child{display:inline}
+}
