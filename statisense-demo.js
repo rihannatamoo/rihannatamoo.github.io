@@ -1,60 +1,62 @@
 (() => {
   const root = document.querySelector('.strategy-demo');
   if (!root) return;
+
   const cases = {
     documents:{
       problem:'Important information is buried inside long, complex documents.',
       problemCopy:'Users spend too much time reading before they can identify the facts, risks and questions that actually matter.',
-      input:'Documents and source material',
-      inputCopy:'Reports, policies, contracts and business documents',
+      input:'Documents and reports',
+      inputCopy:'Financial reports, policies, business documents and source material',
       ai:'Extract and structure',
-      aiCopy:'Identify relevant signals and organize them around the user task',
+      aiCopy:'Identify relevant information and organize it around the user task',
       output:'What needs attention?',
-      outputCopy:'A concise view of relevant facts, risk and next questions',
+      outputCopy:'A concise view of material facts, risk and the next questions to investigate',
       value:'Reduce interpretation time',
-      valueCopy:'The product creates value when a user can move from source material to a defensible understanding faster.',
+      valueCopy:'The product creates value when a user can move from source material to a useful understanding faster.',
       measure:'Time to useful insight'
     },
     financial:{
-      problem:'Important movement can disappear inside dense financial and operating data.',
-      problemCopy:'Users need to distinguish meaningful change from normal variation before they can prioritize a response.',
-      input:'Financial and operating data',
-      inputCopy:'Performance data, approvals, transactions and business metrics',
-      ai:'Detect and explain',
+      problem:'Important financial movement can disappear inside dense reports and market information.',
+      problemCopy:'Users need to distinguish meaningful change from normal variation before they can decide what deserves attention.',
+      input:'Financial and market data',
+      inputCopy:'Reports, performance data, market information and related business context',
+      ai:'Analyze and prioritize',
       aiCopy:'Surface material trends, exceptions and relevant comparisons',
       output:'What changed and why does it matter?',
-      outputCopy:'Prioritized signals with enough context to support a review or decision',
+      outputCopy:'Prioritized signals with enough context to support analysis or a business decision',
       value:'Focus attention on material change',
-      valueCopy:'The product should reduce the time spent searching for the signal and increase the time spent deciding what to do about it.',
+      valueCopy:'The product reduces time spent searching for the signal and gives the user more time to interpret and act on it.',
       measure:'Analysis cycle time'
     },
-    business:{
-      problem:'Dashboards show activity but often leave the user to interpret the story alone.',
-      problemCopy:'Business teams need a clearer explanation of what changed, where it changed and which part deserves attention first.',
-      input:'Connected business data',
-      inputCopy:'Operational, customer and performance information',
-      ai:'Synthesize and prioritize',
-      aiCopy:'Connect related signals and organize them around a business question',
-      output:'What should I investigate first?',
-      outputCopy:'Decision ready context rather than another collection of charts',
-      value:'Move from monitoring to understanding',
-      valueCopy:'The product becomes more useful when it helps a user identify the next question instead of only presenting the current state.',
-      measure:'Decision readiness'
+    borrower:{
+      problem:'Borrower review requires signals from multiple pieces of information to be understood together.',
+      problemCopy:'Analysts need a structured view of the factors that may affect risk or a lending decision without manually rebuilding the context.',
+      input:'Borrower information',
+      inputCopy:'Application data, financial signals and other relevant decision inputs',
+      ai:'Organize and surface signals',
+      aiCopy:'Bring relevant factors together and highlight information that warrants review',
+      output:'What should the analyst review?',
+      outputCopy:'A clearer decision context with the important signals visible in one place',
+      value:'Reduce review friction',
+      valueCopy:'The product creates value when analysis is faster without hiding the evidence needed for human judgment.',
+      measure:'Review cycle time'
     },
-    operations:{
-      problem:'Analysis loses value when it is disconnected from the operational workflow that follows.',
-      problemCopy:'Teams need to move from an insight to an approval, review or action without rebuilding the context in another system.',
-      input:'Analysis + workflow context',
-      inputCopy:'Signals, supporting evidence and business rules',
-      ai:'Package the context',
-      aiCopy:'Present the information needed for a faster and more consistent decision',
-      output:'What action should happen next?',
-      outputCopy:'A clearer handoff into review, approval or operational follow through',
-      value:'Reduce decision friction',
-      valueCopy:'The product creates operating value when insight can move into action with less rework and less context loss.',
-      measure:'Workflow efficiency'
+    payments:{
+      problem:'Invoice and payment issues are difficult to prioritize when exceptions are spread across large volumes of records.',
+      problemCopy:'Teams need to know which items require attention, why they are exceptions and what information is needed to resolve them.',
+      input:'Invoice and payment data',
+      inputCopy:'Transactions, payment status, reconciliation information and supporting records',
+      ai:'Detect and explain exceptions',
+      aiCopy:'Identify unusual patterns and organize the context around unresolved items',
+      output:'What requires action next?',
+      outputCopy:'Prioritized exceptions with the context needed for reconciliation or follow through',
+      value:'Make exceptions easier to resolve',
+      valueCopy:'The product creates operating value when teams can move from a large dataset to the small number of items that need action.',
+      measure:'Exception resolution time'
     }
   };
+
   const map = {
     problem:'sd-problem',
     problemCopy:'sd-problem-copy',
@@ -68,9 +70,14 @@
     valueCopy:'sd-value-copy',
     measure:'sd-measure'
   };
+
   root.querySelectorAll('[data-usecase]').forEach(btn => btn.addEventListener('click', () => {
     root.querySelectorAll('[data-usecase]').forEach(b => b.classList.toggle('active', b === btn));
     const d = cases[btn.dataset.usecase];
-    Object.entries(map).forEach(([key,id]) => document.getElementById(id).textContent = d[key]);
+    if (!d) return;
+    Object.entries(map).forEach(([key,id]) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = d[key];
+    });
   }));
 })();
