@@ -1,178 +1,165 @@
 (() => {
-  const $ = (s, r = document) => r.querySelector(s);
-  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
-  const demo = $('.ta-demo');
-  if (!demo) return;
+  const root=document.querySelector('.ta-demo'); if(!root) return;
 
-  const toast = $('#ta-toast', demo);
-  let toastTimer;
-  const state = {
-    module: 'insights',
-    insight: 'negative',
-    topic: 'topic-service',
-    keyword: 'keyword-wait',
-    candidate: 'candidate-advisor',
-    filters: { insight: 'all', topic: 'all', keyword: 'all' }
-  };
+  const nav=[...root.querySelectorAll('.ta-nav')];
+  const screens=[...root.querySelectorAll('.ta-screen')];
+  function showScreen(key){
+    nav.forEach(b=>b.classList.toggle('active',b.dataset.module===key));
+    screens.forEach(s=>s.classList.toggle('active',s.dataset.screen===key));
+  }
+  nav.forEach(b=>b.addEventListener('click',()=>showScreen(b.dataset.module)));
 
-  const comments = {
-    'insight-positive': [
-      {source:'Survey · Service', sentiment:'positive', text:'The advisor was patient, helpful and explained the options clearly.', tags:['helpful','advisor']},
-      {source:'Review · Service', sentiment:'positive', text:'Friendly staff and a very smooth experience overall.', tags:['friendly','staff']},
-      {source:'Survey · Follow up', sentiment:'neutral', text:'The visit was good. Clear next steps were the best part.', tags:['clarity','service']}
+  const commentData={
+    positive:[
+      {s:'positive',t:'“The advisor explained everything clearly and made the visit easy.”'},
+      {s:'positive',t:'“Helpful staff and clear communication made a big difference.”'},
+      {s:'neutral',t:'“The visit was straightforward and the explanation was useful.”'}
     ],
-    'insight-neutral': [
-      {source:'Survey · Appointment', sentiment:'neutral', text:'Booking online was easy, but I still called to confirm the time.', tags:['booking','confirmation']},
-      {source:'Review · Appointment', sentiment:'positive', text:'The online booking flow was quick and simple.', tags:['booking','easy']},
-      {source:'Survey · Appointment', sentiment:'negative', text:'I booked online but the confirmation was not clear.', tags:['booking','confirmation']}
+    neutral:[
+      {s:'neutral',t:'“I booked online but still called to confirm the appointment.”'},
+      {s:'positive',t:'“The booking flow was easy once I found the right option.”'},
+      {s:'negative',t:'“I was not sure whether the online booking had gone through.”'}
     ],
-    'insight-negative': [
-      {source:'Survey · Service visit', sentiment:'negative', text:'The staff were helpful, but the wait was much longer than expected.', tags:['wait','staff']},
-      {source:'Review · Location 208', sentiment:'negative', text:'I had an appointment and still waited almost an hour.', tags:['wait','appointment']},
-      {source:'Contact centre', sentiment:'neutral', text:'The main issue was not knowing how long the delay would be.', tags:['wait','communication']}
-    ],
-    'topic-service': [
-      {source:'Survey · Service', sentiment:'positive', text:'The team was friendly and took time to explain the options.', tags:['service experience','staff friendliness']},
-      {source:'Review · Service', sentiment:'positive', text:'Helpful staff and a smooth experience overall.', tags:['service experience','helpful']},
-      {source:'Survey · Service', sentiment:'neutral', text:'Everything was handled correctly, though the process felt rushed.', tags:['service experience']}
-    ],
-    'topic-appointment': [
-      {source:'Survey · Appointment', sentiment:'negative', text:'I arrived on time but waited far longer than the appointment window.', tags:['appointment','wait time']},
-      {source:'Review · Appointment', sentiment:'negative', text:'The booking was easy. The wait once I arrived was not.', tags:['appointment','wait']},
-      {source:'Survey · Appointment', sentiment:'neutral', text:'The timing was acceptable but communication could have been better.', tags:['appointment','communication']}
-    ],
-    'topic-quality': [
-      {source:'Survey · Product', sentiment:'positive', text:'The product has been reliable and I have not had any issues.', tags:['product quality','reliability']},
-      {source:'Review · Product', sentiment:'positive', text:'Reliable so far and performs as expected.', tags:['reliability']},
-      {source:'Support ticket', sentiment:'negative', text:'I expected better reliability given the price point.', tags:['reliability','quality']}
-    ],
-    'keyword-wait': [
-      {source:'Survey · Service', sentiment:'negative', text:'The wait was the only disappointing part of the visit.', tags:['wait']},
-      {source:'Review · Location 208', sentiment:'negative', text:'Long wait even with an appointment.', tags:['wait','appointment']},
-      {source:'Contact centre', sentiment:'neutral', text:'Please provide more accurate wait estimates.', tags:['wait','communication']}
-    ],
-    'keyword-helpful': [
-      {source:'Survey · Service', sentiment:'positive', text:'Very helpful and knowledgeable staff.', tags:['helpful','staff']},
-      {source:'Review · Service', sentiment:'positive', text:'The advisor was helpful without being pushy.', tags:['helpful','advisor']},
-      {source:'Survey · Service', sentiment:'positive', text:'Helpful explanation and clear next steps.', tags:['helpful','explanation']}
-    ],
-    'keyword-booking': [
-      {source:'Survey · Appointment', sentiment:'positive', text:'Booking online took less than a minute.', tags:['booking','digital']},
-      {source:'Review · Appointment', sentiment:'neutral', text:'Booking was fine, but the confirmation could be clearer.', tags:['booking','confirmation']},
-      {source:'Survey · Appointment', sentiment:'negative', text:'The booking page timed out twice before it worked.', tags:['booking','digital']}
-    ],
-    'keyword-staff': [
-      {source:'Survey · Service', sentiment:'positive', text:'The staff were professional and welcoming.', tags:['staff','service']},
-      {source:'Review · Service', sentiment:'positive', text:'Staff explained everything clearly.', tags:['staff','explanation']},
-      {source:'Survey · Service', sentiment:'neutral', text:'Staff were fine, but the process took too long.', tags:['staff','wait']}
-    ],
-    'keyword-communication': [
-      {source:'Survey · Service', sentiment:'neutral', text:'Communication was clear once someone was available.', tags:['communication']},
-      {source:'Contact centre', sentiment:'negative', text:'I wanted more proactive communication about the delay.', tags:['communication','wait']},
-      {source:'Review', sentiment:'positive', text:'Good communication throughout the process.', tags:['communication']}
-    ],
-    'keyword-price': [
-      {source:'Survey', sentiment:'negative', text:'The price was higher than I expected.', tags:['price','value']},
-      {source:'Review', sentiment:'neutral', text:'The price was acceptable once the options were explained.', tags:['price','explanation']},
-      {source:'Survey', sentiment:'negative', text:'I wanted clearer pricing before committing.', tags:['price','clarity']}
-    ],
-    'keyword-easy': [
-      {source:'Survey · Digital', sentiment:'positive', text:'The process was easy from start to finish.', tags:['easy','digital']},
-      {source:'Review', sentiment:'positive', text:'Easy to book and easy to understand.', tags:['easy','booking']},
-      {source:'Survey', sentiment:'positive', text:'Everything was straightforward.', tags:['easy']}
-    ],
-    'keyword-confirmation': [
-      {source:'Survey · Appointment', sentiment:'neutral', text:'The confirmation arrived, but I was not sure what to expect next.', tags:['confirmation']},
-      {source:'Review', sentiment:'negative', text:'I did not receive a clear confirmation after booking.', tags:['confirmation','booking']},
-      {source:'Survey', sentiment:'positive', text:'The confirmation message was clear and helpful.', tags:['confirmation']}
-    ],
-    'candidate-advisor': [
-      {source:'Survey · Service', sentiment:'positive', text:'The advisor knew the options and explained the differences clearly.', tags:['advisor knowledge','explanation']},
-      {source:'Review · Service', sentiment:'negative', text:'I expected the advisor to know more about the available service plans.', tags:['advisor knowledge']},
-      {source:'Survey · Service', sentiment:'neutral', text:'The explanation was useful, but I had to ask several follow up questions.', tags:['advisor knowledge','clarity']}
-    ],
-    'candidate-confirmation': [
-      {source:'Survey · Appointment', sentiment:'negative', text:'I booked online and was unsure whether the appointment was confirmed.', tags:['digital confirmation','booking']},
-      {source:'Review · Appointment', sentiment:'neutral', text:'The booking worked but the confirmation details were easy to miss.', tags:['digital confirmation']},
-      {source:'Survey · Appointment', sentiment:'positive', text:'The confirmation text made the next steps very clear.', tags:['digital confirmation']}
-    ],
-    'candidate-price': [
-      {source:'Survey · Service', sentiment:'negative', text:'I wanted to understand the final price before agreeing to the work.', tags:['price transparency']},
-      {source:'Review · Service', sentiment:'neutral', text:'The price made sense once someone broke it down.', tags:['price transparency','explanation']},
-      {source:'Survey · Service', sentiment:'negative', text:'The estimate should have been clearer upfront.', tags:['price transparency']}
+    negative:[
+      {s:'negative',t:'“The wait was much longer than I expected.”'},
+      {s:'negative',t:'“Everything was fine except the time it took before service started.”'},
+      {s:'neutral',t:'“The team was helpful, but the location seemed busy.”'}
     ]
   };
 
-  const insightDetails = {
-    positive:{title:'Service friendliness improved',body:'Positive language around helpful staff and clear explanations increased across service feedback.',focus:'Frontline service',owner:'CX Operations',impact:'Retention',action:'Reinforce the behaviours showing the strongest positive customer response.'},
-    neutral:{title:'Appointment scheduling is shifting',body:'Digital booking mentions are rising, while customers still use assisted channels when confirmation is unclear.',focus:'Booking journey',owner:'Digital Experience',impact:'Convenience',action:'Improve confirmation clarity and track channel switching after booking.'},
-    negative:{title:'Wait time complaints increased',body:'Negative wait time mentions are concentrated in a smaller set of locations and peak periods.',focus:'Capacity and communication',owner:'Operations',impact:'Satisfaction',action:'Investigate peak period staffing and provide clearer delay expectations.'}
+  const insightMap={
+    positive:{title:'Service clarity is improving',body:'Helpful staff and clearer explanations are appearing more often in service feedback.',focus:'Service communication',owner:'CX operations',impact:'Higher confidence',action:'Reinforce clear explanation practices',comments:commentData.positive},
+    neutral:{title:'Digital booking is becoming more important',body:'Customers increasingly mention online booking while assisted channels remain part of the journey.',focus:'Booking journey',owner:'Digital experience',impact:'Lower friction',action:'Improve confirmation and channel handoff',comments:commentData.neutral},
+    negative:{title:'Wait time remains a concentrated pain point',body:'Negative wait time mentions are concentrated in a smaller set of locations and peak periods.',focus:'Wait experience',owner:'Operations',impact:'Reduced detractor risk',action:'Investigate peak period capacity',comments:commentData.negative}
   };
 
-  const topicLabels = {
-    'topic-service':'Service Experience › Staff friendliness',
-    'topic-appointment':'Appointment › Wait time',
-    'topic-quality':'Product Quality › Reliability'
-  };
+  function renderComments(container,items,filter='all'){
+    if(!container) return;
+    const visible=filter==='all'?items:items.filter(x=>x.s===filter);
+    container.innerHTML=visible.map((x,i)=>'<div class="ta-comment"><div class="ta-comment-top"><small>Feedback '+String(i+1).padStart(2,'0')+'</small><span class="sentiment '+x.s+'">'+x.s+'</span></div><p>'+x.t+'</p></div>').join('');
+  }
 
-  const keywordLabels = {
-    'keyword-wait':'wait','keyword-helpful':'helpful','keyword-booking':'booking','keyword-staff':'staff','keyword-communication':'communication','keyword-price':'price','keyword-easy':'easy','keyword-confirmation':'confirmation'
-  };
-
-  const candidateDetails = {
-    'candidate-advisor':{type:'SUGGESTED SUBTOPIC',title:'Advisor Knowledge',desc:'Customers increasingly discuss whether staff can explain products and service options clearly.',volume:'486',change:'▲ 28%',parent:'Service Experience',closest:'Staff Helpfulness',share:'6.4%',reason:'A repeated cluster of comments about the clarity and confidence of staff explanations reached the review threshold and increased versus the previous period.'},
-    'candidate-confirmation':{type:'SUGGESTED SUBTOPIC',title:'Digital Confirmation',desc:'Customers repeatedly mention uncertainty after completing online appointment booking.',volume:'311',change:'▲ 17%',parent:'Appointment',closest:'Booking Experience',share:'4.1%',reason:'A cluster around confirmation clarity continued across multiple feedback sources and increased versus the previous equivalent period.'},
-    'candidate-price':{type:'SUGGESTED TOPIC',title:'Price Transparency',desc:'Customers discuss wanting clearer explanations of pricing before committing to service.',volume:'254',change:'▲ 12%',parent:'Value and Pricing',closest:'Price Fairness',share:'3.3%',reason:'Comments about understanding price before commitment reached the review threshold and appear distinct from the existing Price Fairness topic.'}
-  };
-
-  function showToast(message){if(!toast)return;toast.textContent=message;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),1800)}
-
-  function setModule(name){state.module=name;$$('.ta-nav',demo).forEach(n=>n.classList.toggle('active',n.dataset.module===name));$$('.ta-screen',demo).forEach(s=>s.classList.toggle('active',s.dataset.screen===name))}
-  $$('.ta-nav',demo).forEach(n=>n.addEventListener('click',()=>setModule(n.dataset.module)));
-
-  $$('.ta-context select',demo).forEach(sel=>sel.addEventListener('change',()=>{const note=$('.ta-context-note',demo);note.textContent=`${$('#ta-period',demo).value} · ${$('#ta-hierarchy',demo).value} · ${$('#ta-source',demo).value}`;showToast('Reporting context updated')}));
-
-  function commentCard(c){return `<article class="ta-comment-card" data-sentiment="${c.sentiment}"><div class="ta-comment-meta"><span>${c.source}</span><span class="ta-comment-sentiment ${c.sentiment}">${c.sentiment}</span></div><p>“${c.text}”</p><div class="ta-comment-tags">${c.tags.map(t=>`<span>${t}</span>`).join('')}</div></article>`}
-  function renderComments(containerId,key,filter='all'){const el=$(containerId,demo);if(!el)return;const rows=comments[key]||[];const visible=filter==='all'?rows:rows.filter(c=>c.sentiment===filter);el.innerHTML=visible.length?visible.map(commentCard).join(''):'<article class="ta-comment-card"><p>No comments match this sentiment filter in the demo data.</p></article>'}
-
-  function selectInsight(type){state.insight=type;$$('.ta-insight',demo).forEach(c=>c.classList.toggle('selected',c.dataset.insight===type));const d=insightDetails[type];$('#ta-detail-title',demo).textContent=d.title;$('#ta-detail-body',demo).textContent=d.body;$('#ta-detail-focus',demo).textContent=d.focus;$('#ta-detail-owner',demo).textContent=d.owner;$('#ta-detail-impact',demo).textContent=d.impact;$('#ta-detail-action',demo).textContent=d.action;$('#ta-insight-evidence-title',demo).textContent=`Evidence for ${d.title}`;state.filters.insight='all';resetCommentFilter('insight');renderComments('#ta-insight-comments',`insight-${type}`,'all')}
-  $$('.ta-insight',demo).forEach(card=>card.addEventListener('click',()=>selectInsight(card.dataset.insight)));
-
-  function selectTopic(key){state.topic=key;$$('.ta-topic-row',demo).forEach(r=>r.classList.toggle('selected',r.dataset.key===key));$('#ta-topic-evidence-title',demo).textContent=topicLabels[key]||'Selected topic';state.filters.topic='all';resetCommentFilter('topic');renderComments('#ta-topic-comments',key,'all')}
-  $$('.ta-topic-row',demo).forEach(row=>row.addEventListener('click',()=>selectTopic(row.dataset.key)));
-  $('#ta-topic-search',demo)?.addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase();$$('.ta-topic-row',demo).forEach(r=>r.classList.toggle('ta-row-hidden',q&&!r.textContent.toLowerCase().includes(q)))});
-  $('#ta-topic-sort',demo)?.addEventListener('change',()=>showToast(`Sorted by ${$('#ta-topic-sort',demo).value}`));
-  $('#ta-export',demo)?.addEventListener('click',()=>showToast('Excel export prepared in product flow'));
-
-  function selectKeyword(key){state.keyword=key;$$('.ta-keyword-row',demo).forEach(r=>r.classList.toggle('selected',r.dataset.key===key));$$('.ta-theme-tag',demo).forEach(t=>t.classList.toggle('selected',t.dataset.key===key));$('#ta-keyword-evidence-title',demo).textContent=keywordLabels[key]||'Selected keyword';state.filters.keyword='all';resetCommentFilter('keyword');renderComments('#ta-keyword-comments',key,'all')}
-  $$('.ta-keyword-row',demo).forEach(row=>row.addEventListener('click',()=>selectKeyword(row.dataset.key)));
-  $$('.ta-theme-tag',demo).forEach(tag=>tag.addEventListener('click',()=>selectKeyword(tag.dataset.key)));
-  $$('.ta-keyword-filter',demo).forEach(btn=>btn.addEventListener('click',()=>{const filter=btn.dataset.filter;$$('.ta-keyword-filter',demo).forEach(b=>b.classList.toggle('active',b===btn));$$('.ta-keyword-row',demo).forEach(r=>r.classList.toggle('ta-row-hidden',filter!=='all'&&r.dataset.dominant!==filter));$$('.ta-theme-tag',demo).forEach(t=>t.classList.toggle('filtered',filter!=='all'&&t.dataset.dominant!==filter));showToast(filter==='all'?'Showing all sentiments':`Showing ${filter} language`)}));
-  $('#ta-keyword-sort',demo)?.addEventListener('change',()=>showToast(`Keyword view sorted by ${$('#ta-keyword-sort',demo).value}`));
-
-  function selectCandidate(key){state.candidate=key;$$('.ta-candidate-item',demo).forEach(c=>c.classList.toggle('selected',c.dataset.key===key));const d=candidateDetails[key];$('#ta-candidate-type',demo).textContent=d.type;$('#ta-candidate-title',demo).textContent=d.title;$('#ta-candidate-desc',demo).textContent=d.desc;$('#ta-candidate-volume',demo).textContent=d.volume;$('#ta-candidate-change',demo).textContent=d.change;$('#ta-candidate-parent',demo).textContent=d.parent;$('#ta-candidate-closest',demo).textContent=d.closest;$('#ta-candidate-share',demo).textContent=d.share;$('#ta-candidate-reason',demo).textContent=d.reason;$('#ta-theme-evidence-title',demo).textContent=`Evidence for ${d.title}`;$$('.ta-actions button',demo).forEach(b=>{b.disabled=false;b.textContent=b.dataset.action.charAt(0).toUpperCase()+b.dataset.action.slice(1)});renderComments('#ta-theme-comments',key,'all')}
-  $$('.ta-candidate-item',demo).forEach(c=>c.addEventListener('click',()=>selectCandidate(c.dataset.key)));
-  $$('.ta-actions button',demo).forEach(btn=>btn.addEventListener('click',()=>{const action=btn.dataset.action;const labels={approve:'Approved',merge:'Merged',reject:'Rejected',suppress:'Suppressed'};$$('.ta-actions button',demo).forEach(b=>b.disabled=true);btn.textContent=labels[action];showToast(`${candidateDetails[state.candidate].title}: ${labels[action]}`)}));
-
-  function resetCommentFilter(scope){$$(`.ta-comment-filter[data-scope="${scope}"]`,demo).forEach(b=>b.classList.toggle('active',b.dataset.filter==='all'))}
-  $$('.ta-comment-filter',demo).forEach(btn=>btn.addEventListener('click',()=>{const scope=btn.dataset.scope,filter=btn.dataset.filter;state.filters[scope]=filter;$$(`.ta-comment-filter[data-scope="${scope}"]`,demo).forEach(b=>b.classList.toggle('active',b===btn));if(scope==='insight')renderComments('#ta-insight-comments',`insight-${state.insight}`,filter);if(scope==='topic')renderComments('#ta-topic-comments',state.topic,filter);if(scope==='keyword')renderComments('#ta-keyword-comments',state.keyword,filter)}));
-
-  const tour=$('#ta-tour',demo),tourStep=$('#ta-tour-step',demo),tourTitle=$('#ta-tour-title',demo),tourBody=$('#ta-tour-body',demo),tourDots=$('#ta-tour-dots',demo),tourPrev=$('#ta-tour-prev',demo),tourNext=$('#ta-tour-next',demo);let tourIndex=0;
-  const tourSteps=[
-    {module:'insights',title:'Start with AI synthesis',body:'Select any positive, neutral or negative insight. The action context and customer evidence update with the selected insight.'},
-    {module:'topics',title:'Move into approved topics',body:'Search or select a Topic and Subtopic. The evidence section below shows the exact customer comments for the selected path.'},
-    {module:'keywords',title:'Explore customer language two ways',body:'Use Theme Tags for visual exploration and the Keyword Table for structured comparison. Both update the same supporting comments.'},
-    {module:'themes',title:'Review what AI discovers',body:'Select a candidate to inspect why it surfaced, where it may belong, the closest existing topic and the comments supporting the recommendation.'}
-  ];
-  function renderTour(){const s=tourSteps[tourIndex];setModule(s.module);tourStep.textContent=`Walkthrough ${tourIndex+1} of ${tourSteps.length}`;tourTitle.textContent=s.title;tourBody.textContent=s.body;tourPrev.style.visibility=tourIndex===0?'hidden':'visible';tourNext.textContent=tourIndex===tourSteps.length-1?'Finish':'Next';tourDots.innerHTML=tourSteps.map((_,i)=>`<i class="${i===tourIndex?'active':''}"></i>`).join('')}
-  $('#ta-tour-start',demo)?.addEventListener('click',()=>{tourIndex=0;tour.classList.add('open');renderTour()});
-  $('#ta-tour-close',demo)?.addEventListener('click',()=>tour.classList.remove('open'));
-  tourPrev?.addEventListener('click',()=>{if(tourIndex>0){tourIndex--;renderTour()}});
-  tourNext?.addEventListener('click',()=>{if(tourIndex<tourSteps.length-1){tourIndex++;renderTour()}else{tour.classList.remove('open');showToast('Walkthrough complete')}});
-
+  let insight='negative';
+  const insightComments=document.getElementById('ta-insight-comments');
+  function selectInsight(key){
+    insight=key;
+    root.querySelectorAll('.ta-insight').forEach(el=>el.classList.toggle('selected',el.dataset.insight===key));
+    const d=insightMap[key];
+    const set=(id,val)=>{const el=document.getElementById(id);if(el)el.textContent=val};
+    set('ta-detail-title',d.title);set('ta-detail-body',d.body);set('ta-detail-focus',d.focus);set('ta-detail-owner',d.owner);set('ta-detail-impact',d.impact);set('ta-detail-action',d.action);
+    set('ta-insight-evidence-title','Customer Comments · '+d.title);
+    root.querySelectorAll('.ta-comment-filter[data-scope="insight"]').forEach(b=>b.classList.toggle('active',b.dataset.filter==='all'));
+    renderComments(insightComments,d.comments);
+  }
+  root.querySelectorAll('.ta-insight').forEach(el=>el.addEventListener('click',()=>selectInsight(el.dataset.insight)));
   selectInsight('negative');
+
+  const topicMap={
+    'topic-service':{title:'Service Experience > Staff & Communication',comments:commentData.positive},
+    'topic-appointment':{title:'Appointment Experience > Wait Time',comments:commentData.negative},
+    'topic-quality':{title:'Product & Service Quality',comments:[{s:'positive',t:'“The work was completed properly and everything was explained.”'},{s:'neutral',t:'“The result was fine, but I would have liked more updates.”'},{s:'negative',t:'“I had to return because the original issue was not fully resolved.”'}]}
+  };
+  let topic='topic-service';
+  const topicComments=document.getElementById('ta-topic-comments');
+  function selectTopic(key){
+    topic=key;
+    root.querySelectorAll('.ta-topic-row').forEach(el=>el.classList.toggle('selected',el.dataset.key===key));
+    const d=topicMap[key]||topicMap['topic-service'];
+    const title=document.getElementById('ta-topic-evidence-title');if(title)title.textContent=d.title;
+    root.querySelectorAll('.ta-comment-filter[data-scope="topic"]').forEach(b=>b.classList.toggle('active',b.dataset.filter==='all'));
+    renderComments(topicComments,d.comments);
+  }
+  root.querySelectorAll('.ta-topic-row').forEach(el=>el.addEventListener('click',()=>selectTopic(el.dataset.key)));
   selectTopic('topic-service');
+
+  const topicSearch=document.getElementById('ta-topic-search');
+  if(topicSearch) topicSearch.addEventListener('input',()=>{
+    const q=topicSearch.value.toLowerCase();
+    root.querySelectorAll('.ta-topic-row').forEach(r=>r.style.display=r.textContent.toLowerCase().includes(q)?'grid':'none');
+  });
+
+  const keywordMap={
+    'keyword-wait':{title:'Keyword: wait',sentiment:'negative',comments:commentData.negative},
+    'keyword-helpful':{title:'Keyword: helpful',sentiment:'positive',comments:commentData.positive},
+    'keyword-booking':{title:'Keyword: booking',sentiment:'neutral',comments:commentData.neutral},
+    'keyword-staff':{title:'Keyword: staff',sentiment:'positive',comments:commentData.positive},
+    'keyword-communication':{title:'Keyword: communication',sentiment:'neutral',comments:commentData.neutral},
+    'keyword-price':{title:'Keyword: price',sentiment:'negative',comments:[{s:'negative',t:'“The price was higher than I expected.”'},{s:'neutral',t:'“The cost was explained, but I still wanted more options.”'}]},
+    'keyword-easy':{title:'Keyword: easy',sentiment:'positive',comments:[{s:'positive',t:'“The process was easy from start to finish.”'},{s:'positive',t:'“Booking was simple and the instructions were clear.”'}]},
+    'keyword-confirmation':{title:'Keyword: confirmation',sentiment:'neutral',comments:commentData.neutral}
+  };
+  let keyword='keyword-wait';
+  const keywordComments=document.getElementById('ta-keyword-comments');
+  function selectKeyword(key){
+    keyword=key;
+    root.querySelectorAll('.ta-keyword-row,.ta-theme-tag').forEach(el=>el.classList.toggle('selected',el.dataset.key===key));
+    const d=keywordMap[key]||keywordMap['keyword-wait'];
+    const title=document.getElementById('ta-keyword-evidence-title');if(title)title.textContent=d.title+' · Customer Comments';
+    root.querySelectorAll('.ta-comment-filter[data-scope="keyword"]').forEach(b=>b.classList.toggle('active',b.dataset.filter==='all'));
+    renderComments(keywordComments,d.comments);
+  }
+  root.querySelectorAll('.ta-keyword-row,.ta-theme-tag').forEach(el=>el.addEventListener('click',()=>selectKeyword(el.dataset.key)));
   selectKeyword('keyword-wait');
+
+  root.querySelectorAll('.ta-keyword-filter').forEach(btn=>btn.addEventListener('click',()=>{
+    root.querySelectorAll('.ta-keyword-filter').forEach(b=>b.classList.toggle('active',b===btn));
+    const f=btn.dataset.filter;
+    root.querySelectorAll('.ta-keyword-row').forEach(r=>r.style.display=f==='all'||r.dataset.dominant===f?'grid':'none');
+    root.querySelectorAll('.ta-theme-tag').forEach(t=>t.style.display=f==='all'||t.dataset.dominant===f?'inline-block':'none');
+  }));
+
+  root.querySelectorAll('.ta-comment-filter').forEach(btn=>btn.addEventListener('click',()=>{
+    const scope=btn.dataset.scope,filter=btn.dataset.filter;
+    root.querySelectorAll('.ta-comment-filter[data-scope="'+scope+'"]').forEach(b=>b.classList.toggle('active',b===btn));
+    if(scope==='insight') renderComments(insightComments,insightMap[insight].comments,filter);
+    if(scope==='topic') renderComments(topicComments,(topicMap[topic]||topicMap['topic-service']).comments,filter);
+    if(scope==='keyword') renderComments(keywordComments,(keywordMap[keyword]||keywordMap['keyword-wait']).comments,filter);
+  }));
+
+  const candidates={
+    'candidate-advisor':{type:'Suggested subtopic',title:'Advisor explanation quality',desc:'Customers increasingly discuss whether staff can explain products and service options clearly.',volume:'486',change:'▲ 31%',parent:'Service Experience',closest:'Staff Helpfulness',share:'8.4%',reason:'A repeated cluster of comments about clarity and confidence reached the review threshold and increased versus the previous period.',comments:commentData.positive},
+    'candidate-confirmation':{type:'Suggested subtopic',title:'Booking confirmation',desc:'Customers mention uncertainty around whether digital bookings have been confirmed.',volume:'288',change:'▲ 18%',parent:'Appointment Experience',closest:'Online Booking',share:'5.1%',reason:'Mentions increased and form a stable cluster distinct from general booking comments.',comments:commentData.neutral},
+    'candidate-price':{type:'Suggested topic',title:'Price transparency',desc:'Customers discuss unexpected cost and the clarity of pricing explanations.',volume:'394',change:'▲ 12%',parent:'Propose as new topic',closest:'Value for Money',share:'6.2%',reason:'The language cluster is growing and overlaps partially with value, but includes a distinct transparency pattern.',comments:keywordMap['keyword-price'].comments}
+  };
+  let candidate='candidate-advisor';
+  const themeComments=document.getElementById('ta-theme-comments');
+  function selectCandidate(key){
+    candidate=key; const d=candidates[key]||candidates['candidate-advisor'];
+    root.querySelectorAll('.ta-candidate-item').forEach(el=>el.classList.toggle('selected',el.dataset.key===key));
+    const set=(id,val)=>{const el=document.getElementById(id);if(el)el.textContent=val};
+    set('ta-candidate-type',d.type);set('ta-candidate-title',d.title);set('ta-candidate-desc',d.desc);set('ta-candidate-volume',d.volume);set('ta-candidate-change',d.change);set('ta-candidate-parent',d.parent);set('ta-candidate-closest',d.closest);set('ta-candidate-share',d.share);set('ta-candidate-reason',d.reason);set('ta-theme-evidence-title','Supporting comments · '+d.title);
+    renderComments(themeComments,d.comments);
+  }
+  root.querySelectorAll('.ta-candidate-item').forEach(el=>el.addEventListener('click',()=>selectCandidate(el.dataset.key)));
   selectCandidate('candidate-advisor');
-  setModule('insights');
+
+  const toast=document.getElementById('ta-toast');
+  function notify(msg){if(!toast)return;toast.textContent=msg;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1700)}
+  root.querySelectorAll('.ta-actions [data-action]').forEach(btn=>btn.addEventListener('click',()=>{
+    const action=btn.dataset.action;
+    notify(action.charAt(0).toUpperCase()+action.slice(1)+' action recorded for demo');
+  }));
+  const exportBtn=document.getElementById('ta-export');if(exportBtn)exportBtn.addEventListener('click',()=>notify('Sample export prepared'));
+
+  const tour=document.getElementById('ta-tour'),start=document.getElementById('ta-tour-start'),prev=document.getElementById('ta-tour-prev'),next=document.getElementById('ta-tour-next'),close=document.getElementById('ta-tour-close');
+  const steps=[
+    {screen:'insights',title:'Start with synthesis',body:'Review three prioritized AI insights, then inspect the evidence behind each conclusion.'},
+    {screen:'topics',title:'Analyze approved taxonomy',body:'Compare known topics and subtopics using sentiment, NPS, movement and customer comments.'},
+    {screen:'keywords',title:'Explore customer language',body:'Use Theme Tags for discovery and the Keyword Table for structured comparison.'},
+    {screen:'themes',title:'Govern what AI discovers',body:'Review emerging candidates, why they surfaced, where they may belong and the evidence behind them.'}
+  ];
+  let step=0;
+  function paintTour(){
+    const d=steps[step];showScreen(d.screen);
+    const a=document.getElementById('ta-tour-step');if(a)a.textContent='Walkthrough '+(step+1)+' of '+steps.length;
+    const title=document.getElementById('ta-tour-title');if(title)title.textContent=d.title;
+    const body=document.getElementById('ta-tour-body');if(body)body.textContent=d.body;
+    const dots=document.getElementById('ta-tour-dots');if(dots)dots.innerHTML=steps.map((_,i)=>'<i class="'+(i===step?'active':'')+'"></i>').join('');
+    if(prev)prev.style.visibility=step===0?'hidden':'visible';
+    if(next)next.textContent=step===steps.length-1?'Finish':'Next';
+  }
+  if(start)start.addEventListener('click',()=>{step=0;tour&&tour.classList.add('show');paintTour()});
+  if(close)close.addEventListener('click',()=>tour&&tour.classList.remove('show'));
+  if(prev)prev.addEventListener('click',()=>{if(step>0){step--;paintTour()}});
+  if(next)next.addEventListener('click',()=>{if(step<steps.length-1){step++;paintTour()}else tour&&tour.classList.remove('show')});
 })();
